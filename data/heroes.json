@@ -4,6 +4,7 @@
     "key": "npc_dota_hero_antimage",
     "heroId": 1,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_antimage_png.png"
   },
   {
@@ -11,6 +12,7 @@
     "key": "npc_dota_hero_axe",
     "heroId": 2,
     "movementSpeed": 315,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_axe_png.png"
   },
   {
@@ -18,6 +20,7 @@
     "key": "npc_dota_hero_bane",
     "heroId": 3,
     "movementSpeed": 305,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_bane_png.png"
   },
   {
@@ -25,6 +28,7 @@
     "key": "npc_dota_hero_bloodseeker",
     "heroId": 4,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.43,
     "icon": "npc_dota_hero_bloodseeker_png.png"
   },
   {
@@ -32,6 +36,7 @@
     "key": "npc_dota_hero_crystal_maiden",
     "heroId": 5,
     "movementSpeed": 280,
+    "attackAnimationPoint": 0.45,
     "icon": "npc_dota_hero_crystal_maiden_png.png"
   },
   {
@@ -39,6 +44,7 @@
     "key": "npc_dota_hero_drow_ranger",
     "heroId": 6,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_drow_ranger_png.png"
   },
   {
@@ -46,6 +52,7 @@
     "key": "npc_dota_hero_earthshaker",
     "heroId": 7,
     "movementSpeed": 315,
+    "attackAnimationPoint": 0.467,
     "icon": "npc_dota_hero_earthshaker_png.png"
   },
   {
@@ -53,6 +60,7 @@
     "key": "npc_dota_hero_juggernaut",
     "heroId": 8,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.33,
     "icon": "npc_dota_hero_juggernaut_png.png"
   },
   {
@@ -60,6 +68,7 @@
     "key": "npc_dota_hero_mirana",
     "heroId": 9,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_mirana_png.png"
   },
   {
@@ -67,6 +76,7 @@
     "key": "npc_dota_hero_nevermore",
     "heroId": 11,
     "movementSpeed": 305,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_nevermore_png.png"
   },
   {
@@ -74,6 +84,7 @@
     "key": "npc_dota_hero_morphling",
     "heroId": 10,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_morphling_png.png"
   },
   {
@@ -81,6 +92,7 @@
     "key": "npc_dota_hero_phantom_lancer",
     "heroId": 12,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_phantom_lancer_png.png"
   },
   {
@@ -88,6 +100,7 @@
     "key": "npc_dota_hero_puck",
     "heroId": 13,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_puck_png.png"
   },
   {
@@ -95,6 +108,7 @@
     "key": "npc_dota_hero_pudge",
     "heroId": 14,
     "movementSpeed": 280,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_pudge_png.png"
   },
   {
@@ -102,6 +116,7 @@
     "key": "npc_dota_hero_razor",
     "heroId": 15,
     "movementSpeed": 280,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_razor_png.png"
   },
   {
@@ -109,6 +124,7 @@
     "key": "npc_dota_hero_sand_king",
     "heroId": 16,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.53,
     "icon": "npc_dota_hero_sand_king_png.png"
   },
   {
@@ -116,6 +132,7 @@
     "key": "npc_dota_hero_storm_spirit",
     "heroId": 17,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_storm_spirit_png.png"
   },
   {
@@ -123,6 +140,7 @@
     "key": "npc_dota_hero_sven",
     "heroId": 18,
     "movementSpeed": 325,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_sven_png.png"
   },
   {
@@ -130,6 +148,7 @@
     "key": "npc_dota_hero_tiny",
     "heroId": 19,
     "movementSpeed": 275,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_tiny_png.png"
   },
   {
@@ -137,6 +156,7 @@
     "key": "npc_dota_hero_vengefulspirit",
     "heroId": 20,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.33,
     "icon": "npc_dota_hero_vengefulspirit_png.png"
   },
   {
@@ -144,6 +164,7 @@
     "key": "npc_dota_hero_windrunner",
     "heroId": 21,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_windrunner_png.png"
   },
   {
@@ -151,6 +172,7 @@
     "key": "npc_dota_hero_zuus",
     "heroId": 22,
     "movementSpeed": 305,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_zuus_png.png"
   },
   {
@@ -158,6 +180,7 @@
     "key": "npc_dota_hero_kunkka",
     "heroId": 23,
     "movementSpeed": 315,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_kunkka_png.png"
   },
   {
@@ -165,6 +188,7 @@
     "key": "npc_dota_hero_lina",
     "heroId": 25,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.65,
     "icon": "npc_dota_hero_lina_png.png"
   },
   {
@@ -172,6 +196,7 @@
     "key": "npc_dota_hero_lich",
     "heroId": 31,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.46,
     "icon": "npc_dota_hero_lich_png.png"
   },
   {
@@ -179,6 +204,7 @@
     "key": "npc_dota_hero_lion",
     "heroId": 26,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.43,
     "icon": "npc_dota_hero_lion_png.png"
   },
   {
@@ -186,6 +212,7 @@
     "key": "npc_dota_hero_shadow_shaman",
     "heroId": 27,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_shadow_shaman_png.png"
   },
   {
@@ -193,6 +220,7 @@
     "key": "npc_dota_hero_slardar",
     "heroId": 28,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.36,
     "icon": "npc_dota_hero_slardar_png.png"
   },
   {
@@ -200,6 +228,7 @@
     "key": "npc_dota_hero_tidehunter",
     "heroId": 29,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.6,
     "icon": "npc_dota_hero_tidehunter_png.png"
   },
   {
@@ -207,6 +236,7 @@
     "key": "npc_dota_hero_witch_doctor",
     "heroId": 30,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_witch_doctor_png.png"
   },
   {
@@ -214,6 +244,7 @@
     "key": "npc_dota_hero_riki",
     "heroId": 32,
     "movementSpeed": 315,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_riki_png.png"
   },
   {
@@ -221,6 +252,7 @@
     "key": "npc_dota_hero_enigma",
     "heroId": 33,
     "movementSpeed": 280,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_enigma_png.png"
   },
   {
@@ -228,6 +260,7 @@
     "key": "npc_dota_hero_tinker",
     "heroId": 34,
     "movementSpeed": 305,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_tinker_png.png"
   },
   {
@@ -235,6 +268,7 @@
     "key": "npc_dota_hero_sniper",
     "heroId": 35,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.17,
     "icon": "npc_dota_hero_sniper_png.png"
   },
   {
@@ -242,6 +276,7 @@
     "key": "npc_dota_hero_necrolyte",
     "heroId": 36,
     "movementSpeed": 280,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_necrolyte_png.png"
   },
   {
@@ -249,6 +284,7 @@
     "key": "npc_dota_hero_warlock",
     "heroId": 37,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_warlock_png.png"
   },
   {
@@ -256,6 +292,7 @@
     "key": "npc_dota_hero_beastmaster",
     "heroId": 38,
     "movementSpeed": 305,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_beastmaster_png.png"
   },
   {
@@ -263,6 +300,7 @@
     "key": "npc_dota_hero_queenofpain",
     "heroId": 39,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.56,
     "icon": "npc_dota_hero_queenofpain_png.png"
   },
   {
@@ -270,6 +308,7 @@
     "key": "npc_dota_hero_venomancer",
     "heroId": 40,
     "movementSpeed": 280,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_venomancer_png.png"
   },
   {
@@ -277,6 +316,7 @@
     "key": "npc_dota_hero_faceless_void",
     "heroId": 41,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_faceless_void_png.png"
   },
   {
@@ -284,6 +324,7 @@
     "key": "npc_dota_hero_skeleton_king",
     "heroId": 42,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.56,
     "icon": "npc_dota_hero_skeleton_king_png.png"
   },
   {
@@ -291,6 +332,7 @@
     "key": "npc_dota_hero_death_prophet",
     "heroId": 43,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_death_prophet_png.png"
   },
   {
@@ -298,6 +340,7 @@
     "key": "npc_dota_hero_phantom_assassin",
     "heroId": 44,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_phantom_assassin_png.png"
   },
   {
@@ -305,6 +348,7 @@
     "key": "npc_dota_hero_pugna",
     "heroId": 45,
     "movementSpeed": 325,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_pugna_png.png"
   },
   {
@@ -312,6 +356,7 @@
     "key": "npc_dota_hero_templar_assassin",
     "heroId": 46,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_templar_assassin_png.png"
   },
   {
@@ -319,6 +364,7 @@
     "key": "npc_dota_hero_viper",
     "heroId": 47,
     "movementSpeed": 275,
+    "attackAnimationPoint": 0.33,
     "icon": "npc_dota_hero_viper_png.png"
   },
   {
@@ -326,6 +372,7 @@
     "key": "npc_dota_hero_luna",
     "heroId": 48,
     "movementSpeed": 325,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_luna_png.png"
   },
   {
@@ -333,6 +380,7 @@
     "key": "npc_dota_hero_dragon_knight",
     "heroId": 49,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_dragon_knight_png.png"
   },
   {
@@ -340,6 +388,7 @@
     "key": "npc_dota_hero_dazzle",
     "heroId": 50,
     "movementSpeed": 305,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_dazzle_png.png"
   },
   {
@@ -347,6 +396,7 @@
     "key": "npc_dota_hero_rattletrap",
     "heroId": 51,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.33,
     "icon": "npc_dota_hero_rattletrap_png.png"
   },
   {
@@ -354,6 +404,7 @@
     "key": "npc_dota_hero_leshrac",
     "heroId": 52,
     "movementSpeed": 325,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_leshrac_png.png"
   },
   {
@@ -361,6 +412,7 @@
     "key": "npc_dota_hero_furion",
     "heroId": 53,
     "movementSpeed": 295,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_furion_png.png"
   },
   {
@@ -368,6 +420,7 @@
     "key": "npc_dota_hero_life_stealer",
     "heroId": 54,
     "movementSpeed": 320,
+    "attackAnimationPoint": 0.39,
     "icon": "npc_dota_hero_life_stealer_png.png"
   },
   {
@@ -375,6 +428,7 @@
     "key": "npc_dota_hero_dark_seer",
     "heroId": 55,
     "movementSpeed": 295,
+    "attackAnimationPoint": 0.59,
     "icon": "npc_dota_hero_dark_seer_png.png"
   },
   {
@@ -382,6 +436,7 @@
     "key": "npc_dota_hero_clinkz",
     "heroId": 56,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_clinkz_png.png"
   },
   {
@@ -389,6 +444,7 @@
     "key": "npc_dota_hero_omniknight",
     "heroId": 57,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.433,
     "icon": "npc_dota_hero_omniknight_png.png"
   },
   {
@@ -396,6 +452,7 @@
     "key": "npc_dota_hero_enchantress",
     "heroId": 58,
     "movementSpeed": 320,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_enchantress_png.png"
   },
   {
@@ -403,6 +460,7 @@
     "key": "npc_dota_hero_huskar",
     "heroId": 59,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_huskar_png.png"
   },
   {
@@ -410,6 +468,7 @@
     "key": "npc_dota_hero_night_stalker",
     "heroId": 60,
     "movementSpeed": 295,
+    "attackAnimationPoint": 0.55,
     "icon": "npc_dota_hero_night_stalker_png.png"
   },
   {
@@ -417,6 +476,7 @@
     "key": "npc_dota_hero_broodmother",
     "heroId": 61,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_broodmother_png.png"
   },
   {
@@ -424,6 +484,7 @@
     "key": "npc_dota_hero_bounty_hunter",
     "heroId": 62,
     "movementSpeed": 325,
+    "attackAnimationPoint": 0.59,
     "icon": "npc_dota_hero_bounty_hunter_png.png"
   },
   {
@@ -431,6 +492,7 @@
     "key": "npc_dota_hero_weaver",
     "heroId": 63,
     "movementSpeed": 275,
+    "attackAnimationPoint": 0.55,
     "icon": "npc_dota_hero_weaver_png.png"
   },
   {
@@ -438,6 +500,7 @@
     "key": "npc_dota_hero_jakiro",
     "heroId": 64,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_jakiro_png.png"
   },
   {
@@ -445,6 +508,7 @@
     "key": "npc_dota_hero_batrider",
     "heroId": 65,
     "movementSpeed": 320,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_batrider_png.png"
   },
   {
@@ -452,6 +516,7 @@
     "key": "npc_dota_hero_chen",
     "heroId": 66,
     "movementSpeed": 305,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_chen_png.png"
   },
   {
@@ -459,6 +524,7 @@
     "key": "npc_dota_hero_spectre",
     "heroId": 67,
     "movementSpeed": 295,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_spectre_png.png"
   },
   {
@@ -466,6 +532,7 @@
     "key": "npc_dota_hero_doom_bringer",
     "heroId": 69,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_doom_bringer_png.png"
   },
   {
@@ -473,6 +540,7 @@
     "key": "npc_dota_hero_ancient_apparition",
     "heroId": 68,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.45,
     "icon": "npc_dota_hero_ancient_apparition_png.png"
   },
   {
@@ -480,6 +548,7 @@
     "key": "npc_dota_hero_ursa",
     "heroId": 70,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_ursa_png.png"
   },
   {
@@ -487,6 +556,7 @@
     "key": "npc_dota_hero_spirit_breaker",
     "heroId": 71,
     "movementSpeed": 295,
+    "attackAnimationPoint": 0.6,
     "icon": "npc_dota_hero_spirit_breaker_png.png"
   },
   {
@@ -494,6 +564,7 @@
     "key": "npc_dota_hero_gyrocopter",
     "heroId": 72,
     "movementSpeed": 315,
+    "attackAnimationPoint": 0.2,
     "icon": "npc_dota_hero_gyrocopter_png.png"
   },
   {
@@ -501,6 +572,7 @@
     "key": "npc_dota_hero_alchemist",
     "heroId": 73,
     "movementSpeed": 295,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_alchemist_png.png"
   },
   {
@@ -508,6 +580,7 @@
     "key": "npc_dota_hero_invoker",
     "heroId": 74,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_invoker_png.png"
   },
   {
@@ -515,6 +588,7 @@
     "key": "npc_dota_hero_silencer",
     "heroId": 75,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_silencer_png.png"
   },
   {
@@ -522,6 +596,7 @@
     "key": "npc_dota_hero_obsidian_destroyer",
     "heroId": 76,
     "movementSpeed": 315,
+    "attackAnimationPoint": 0.46,
     "icon": "npc_dota_hero_obsidian_destroyer_png.png"
   },
   {
@@ -529,6 +604,7 @@
     "key": "npc_dota_hero_lycan",
     "heroId": 77,
     "movementSpeed": 305,
+    "attackAnimationPoint": 0.55,
     "icon": "npc_dota_hero_lycan_png.png"
   },
   {
@@ -536,6 +612,7 @@
     "key": "npc_dota_hero_brewmaster",
     "heroId": 78,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_brewmaster_png.png"
   },
   {
@@ -543,6 +620,7 @@
     "key": "npc_dota_hero_shadow_demon",
     "heroId": 79,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_shadow_demon_png.png"
   },
   {
@@ -550,6 +628,7 @@
     "key": "npc_dota_hero_lone_druid",
     "heroId": 80,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.33,
     "icon": "npc_dota_hero_lone_druid_png.png"
   },
   {
@@ -557,6 +636,7 @@
     "key": "npc_dota_hero_chaos_knight",
     "heroId": 81,
     "movementSpeed": 325,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_chaos_knight_png.png"
   },
   {
@@ -564,6 +644,7 @@
     "key": "npc_dota_hero_meepo",
     "heroId": 82,
     "movementSpeed": 315,
+    "attackAnimationPoint": 0.38,
     "icon": "npc_dota_hero_meepo_png.png"
   },
   {
@@ -571,6 +652,7 @@
     "key": "npc_dota_hero_treant",
     "heroId": 83,
     "movementSpeed": 280,
+    "attackAnimationPoint": 0.6,
     "icon": "npc_dota_hero_treant_png.png"
   },
   {
@@ -578,6 +660,7 @@
     "key": "npc_dota_hero_ogre_magi",
     "heroId": 84,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_ogre_magi_png.png"
   },
   {
@@ -585,6 +668,7 @@
     "key": "npc_dota_hero_undying",
     "heroId": 85,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_undying_png.png"
   },
   {
@@ -592,6 +676,7 @@
     "key": "npc_dota_hero_rubick",
     "heroId": 86,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_rubick_png.png"
   },
   {
@@ -599,6 +684,7 @@
     "key": "npc_dota_hero_disruptor",
     "heroId": 87,
     "movementSpeed": 295,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_disruptor_png.png"
   },
   {
@@ -606,6 +692,7 @@
     "key": "npc_dota_hero_nyx_assassin",
     "heroId": 88,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.46,
     "icon": "npc_dota_hero_nyx_assassin_png.png"
   },
   {
@@ -613,6 +700,7 @@
     "key": "npc_dota_hero_naga_siren",
     "heroId": 89,
     "movementSpeed": 330,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_naga_siren_png.png"
   },
   {
@@ -620,6 +708,7 @@
     "key": "npc_dota_hero_keeper_of_the_light",
     "heroId": 90,
     "movementSpeed": 315,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_keeper_of_the_light_png.png"
   },
   {
@@ -627,6 +716,7 @@
     "key": "npc_dota_hero_wisp",
     "heroId": 91,
     "movementSpeed": 320,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_wisp_png.png"
   },
   {
@@ -634,6 +724,7 @@
     "key": "npc_dota_hero_visage",
     "heroId": 92,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_visage_png.png"
   },
   {
@@ -641,6 +732,7 @@
     "key": "npc_dota_hero_slark",
     "heroId": 93,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_slark_png.png"
   },
   {
@@ -648,6 +740,7 @@
     "key": "npc_dota_hero_medusa",
     "heroId": 94,
     "movementSpeed": 275,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_medusa_png.png"
   },
   {
@@ -655,6 +748,7 @@
     "key": "npc_dota_hero_troll_warlord",
     "heroId": 95,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_troll_warlord_png.png"
   },
   {
@@ -662,6 +756,7 @@
     "key": "npc_dota_hero_centaur",
     "heroId": 96,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_centaur_png.png"
   },
   {
@@ -669,6 +764,7 @@
     "key": "npc_dota_hero_magnataur",
     "heroId": 97,
     "movementSpeed": 305,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_magnataur_png.png"
   },
   {
@@ -676,6 +772,7 @@
     "key": "npc_dota_hero_shredder",
     "heroId": 98,
     "movementSpeed": 280,
+    "attackAnimationPoint": 0.36,
     "icon": "npc_dota_hero_shredder_png.png"
   },
   {
@@ -683,6 +780,7 @@
     "key": "npc_dota_hero_bristleback",
     "heroId": 99,
     "movementSpeed": 295,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_bristleback_png.png"
   },
   {
@@ -690,6 +788,7 @@
     "key": "npc_dota_hero_tusk",
     "heroId": 100,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.36,
     "icon": "npc_dota_hero_tusk_png.png"
   },
   {
@@ -697,6 +796,7 @@
     "key": "npc_dota_hero_skywrath_mage",
     "heroId": 101,
     "movementSpeed": 325,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_skywrath_mage_png.png"
   },
   {
@@ -704,6 +804,7 @@
     "key": "npc_dota_hero_abaddon",
     "heroId": 102,
     "movementSpeed": 325,
+    "attackAnimationPoint": 0.56,
     "icon": "npc_dota_hero_abaddon_png.png"
   },
   {
@@ -711,6 +812,7 @@
     "key": "npc_dota_hero_elder_titan",
     "heroId": 103,
     "movementSpeed": 305,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_elder_titan_png.png"
   },
   {
@@ -718,6 +820,7 @@
     "key": "npc_dota_hero_legion_commander",
     "heroId": 104,
     "movementSpeed": 325,
+    "attackAnimationPoint": 0.46,
     "icon": "npc_dota_hero_legion_commander_png.png"
   },
   {
@@ -725,6 +828,7 @@
     "key": "npc_dota_hero_ember_spirit",
     "heroId": 106,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_ember_spirit_png.png"
   },
   {
@@ -732,6 +836,7 @@
     "key": "npc_dota_hero_earth_spirit",
     "heroId": 107,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_earth_spirit_png.png"
   },
   {
@@ -739,6 +844,7 @@
     "key": "npc_dota_hero_terrorblade",
     "heroId": 109,
     "movementSpeed": 315,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_terrorblade_png.png"
   },
   {
@@ -746,6 +852,7 @@
     "key": "npc_dota_hero_phoenix",
     "heroId": 110,
     "movementSpeed": 280,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_phoenix_png.png"
   },
   {
@@ -753,6 +860,7 @@
     "key": "npc_dota_hero_oracle",
     "heroId": 111,
     "movementSpeed": 295,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_oracle_png.png"
   },
   {
@@ -760,6 +868,7 @@
     "key": "npc_dota_hero_techies",
     "heroId": 105,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_techies_png.png"
   },
   {
@@ -767,6 +876,7 @@
     "key": "npc_dota_hero_winter_wyvern",
     "heroId": 112,
     "movementSpeed": 285,
+    "attackAnimationPoint": 0.25,
     "icon": "npc_dota_hero_winter_wyvern_png.png"
   },
   {
@@ -774,6 +884,7 @@
     "key": "npc_dota_hero_arc_warden",
     "heroId": 113,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_arc_warden_png.png"
   },
   {
@@ -781,6 +892,7 @@
     "key": "npc_dota_hero_abyssal_underlord",
     "heroId": 108,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.45,
     "icon": "npc_dota_hero_abyssal_underlord_png.png"
   },
   {
@@ -788,6 +900,7 @@
     "key": "npc_dota_hero_monkey_king",
     "heroId": 114,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.45,
     "icon": "npc_dota_hero_monkey_king_png.png"
   },
   {
@@ -795,6 +908,7 @@
     "key": "npc_dota_hero_pangolier",
     "heroId": 120,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.33,
     "icon": "npc_dota_hero_pangolier_png.png"
   },
   {
@@ -802,6 +916,7 @@
     "key": "npc_dota_hero_dark_willow",
     "heroId": 119,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_dark_willow_png.png"
   },
   {
@@ -809,6 +924,7 @@
     "key": "npc_dota_hero_grimstroke",
     "heroId": 121,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_grimstroke_png.png"
   },
   {
@@ -816,6 +932,7 @@
     "key": "npc_dota_hero_mars",
     "heroId": 129,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_mars_png.png"
   },
   {
@@ -823,6 +940,7 @@
     "key": "npc_dota_hero_void_spirit",
     "heroId": 126,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_void_spirit_png.png"
   },
   {
@@ -830,6 +948,7 @@
     "key": "npc_dota_hero_snapfire",
     "heroId": 128,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_snapfire_png.png"
   },
   {
@@ -837,6 +956,7 @@
     "key": "npc_dota_hero_hoodwink",
     "heroId": 123,
     "movementSpeed": 315,
+    "attackAnimationPoint": 0.4,
     "icon": "npc_dota_hero_hoodwink_png.png"
   },
   {
@@ -844,6 +964,7 @@
     "key": "npc_dota_hero_dawnbreaker",
     "heroId": 135,
     "movementSpeed": 300,
+    "attackAnimationPoint": 0.46,
     "icon": "npc_dota_hero_dawnbreaker_png.png"
   },
   {
@@ -851,6 +972,7 @@
     "key": "npc_dota_hero_marci",
     "heroId": 136,
     "movementSpeed": 315,
+    "attackAnimationPoint": 0.3,
     "icon": "npc_dota_hero_marci_png.png"
   },
   {
@@ -858,6 +980,7 @@
     "key": "npc_dota_hero_primal_beast",
     "heroId": 137,
     "movementSpeed": 305,
+    "attackAnimationPoint": 0.6,
     "icon": "npc_dota_hero_primal_beast_png.png"
   },
   {
@@ -865,6 +988,7 @@
     "key": "npc_dota_hero_muerta",
     "heroId": 138,
     "movementSpeed": 295,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_muerta_png.png"
   },
   {
@@ -872,6 +996,7 @@
     "key": "npc_dota_hero_ringmaster",
     "heroId": 131,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.5,
     "icon": "npc_dota_hero_ringmaster_png.png"
   },
   {
@@ -879,6 +1004,7 @@
     "key": "npc_dota_hero_kez",
     "heroId": 145,
     "movementSpeed": 310,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_kez_png.png"
   },
   {
@@ -886,6 +1012,7 @@
     "key": "npc_dota_hero_largo",
     "heroId": 155,
     "movementSpeed": 290,
+    "attackAnimationPoint": 0.35,
     "icon": "npc_dota_hero_largo_png.png"
   }
 ]

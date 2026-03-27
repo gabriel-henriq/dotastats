@@ -5,11 +5,15 @@ interface Props {
   side: "left" | "right";
   label: string;
   patch: string;
+  invertColor?: boolean;
 }
 
-export function PatchChanges({ changes, side, label, patch }: Props) {
+function fmt(v: number) {
+  return Number.isInteger(v) ? String(v) : v.toFixed(2);
+}
+
+export function PatchChanges({ changes, side, label, patch, invertColor }: Props) {
   const isLeft = side === "left";
-  const color = isLeft ? "green" : "red";
 
   return (
     <div className="w-52 flex flex-col py-3 px-3 shrink-0">
@@ -45,7 +49,7 @@ export function PatchChanges({ changes, side, label, patch }: Props) {
                     </div>
                     <div className="flex items-center gap-1">
                       <span className="text-[10px] font-mono text-gray-500">
-                        {c.from}
+                        {fmt(c.from)}
                       </span>
                       <span
                         className={`text-[10px] ${
@@ -59,15 +63,14 @@ export function PatchChanges({ changes, side, label, patch }: Props) {
                           isLeft ? "text-green-400" : "text-red-400"
                         }`}
                       >
-                        {c.to}
+                        {fmt(c.to)}
                       </span>
                       <span
                         className={`text-[9px] font-mono ${
                           isLeft ? "text-green-600" : "text-red-600"
                         }`}
                       >
-                        ({diff > 0 ? "+" : ""}
-                        {diff})
+                        ({diff > 0 ? "+" : ""}{fmt(diff)})
                       </span>
                     </div>
                   </div>

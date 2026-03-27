@@ -8,10 +8,15 @@ import {
 } from "react";
 import type { Hero, HeroMsEvent, PatchChange } from "./App";
 
+export interface ChartHero extends Hero {
+  statValue: number;
+}
+
 interface Props {
-  heroes: Hero[];
+  heroes: ChartHero[];
   heroHistory: Map<string, HeroMsEvent[]>;
   changes: PatchChange[];
+  statId: string;
 }
 
 const GAP = 1;
@@ -36,7 +41,7 @@ interface ArrowLine {
   color: string;
 }
 
-export function MovespeedChart({ heroes, heroHistory, changes }: Props) {
+export function MovespeedChart({ heroes, heroHistory, changes, statId }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const chartInnerRef = useRef<HTMLDivElement>(null);
   const heroRefs = useRef(new Map<number, HTMLDivElement>());
@@ -95,16 +100,18 @@ export function MovespeedChart({ heroes, heroHistory, changes }: Props) {
   const { columns, speeds, maxCount } = useMemo(() => {
     const grouped = new Map<number, ColumnItem[]>();
 
+    const round = (v: number) => Math.round(v * 1000) / 1000;
+
     for (const hero of heroes) {
-      const ms = hero.movementSpeed;
-      if (!grouped.has(ms)) grouped.set(ms, []);
-      grouped.get(ms)!.push({ kind: "hero", hero });
+      const key = round(hero.statValue);
+      if (!grouped.has(key)) grouped.set(key, []);
+      grouped.get(key)!.push({ kind: "hero", hero });
     }
 
     for (const ghost of ghosts) {
-      const ms = ghost.fromSpeed;
-      if (!grouped.has(ms)) grouped.set(ms, []);
-      grouped.get(ms)!.push({ kind: "ghost", ghost });
+      const key = round(ghost.fromSpeed);
+      if (!grouped.has(key)) grouped.set(key, []);
+      grouped.get(key)!.push({ kind: "ghost", ghost });
     }
 
     const speeds = [...grouped.keys()].sort((a, b) => a - b);
@@ -319,7 +326,7 @@ export function MovespeedChart({ heroes, heroHistory, changes }: Props) {
                   ))}
                 </div>
                 <div className="text-[11px] text-gray-400 mt-1.5 tabular-nums font-mono font-bold border-t border-gray-700/30 pt-1 w-full text-center">
-                  {speed}
+                  {Number.isInteger(speed) ? speed : speed.toFixed(2)}
                 </div>
               </div>
             );
@@ -396,7 +403,7 @@ const HeroIcon = forwardRef<
                 {hero.name.replace(/_/g, " ")}
               </div>
               <div className="text-blue-400 text-[11px] font-mono font-bold">
-                {hero.movementSpeed} ms
+                {Number.isInteger(hero.statValue) ? hero.statValue : hero.statValue.toFixed(3)}
               </div>
             </div>
           </div>

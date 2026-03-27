@@ -9,11 +9,12 @@ import (
 )
 
 type Hero struct {
-	Name          string `json:"name"`
-	Key           string `json:"key"`
-	HeroID        int    `json:"heroId"`
-	MovementSpeed int    `json:"movementSpeed"`
-	Icon          string `json:"icon"`
+	Name                 string  `json:"name"`
+	Key                  string  `json:"key"`
+	HeroID               int     `json:"heroId"`
+	MovementSpeed        int     `json:"movementSpeed"`
+	AttackAnimationPoint float64 `json:"attackAnimationPoint"`
+	Icon                 string  `json:"icon"`
 }
 
 func main() {
@@ -139,14 +140,20 @@ func parseHeroes(content string) []Hero {
 				moveSpeed = 300
 			}
 
+			aap, _ := strconv.ParseFloat(props["AttackAnimationPoint"], 64)
+			if aap == 0 {
+				aap = 0.75
+			}
+
 			shortKey := strings.TrimPrefix(key, "npc_dota_hero_")
 
 			heroes = append(heroes, Hero{
-				Name:          shortKey,
-				Key:           key,
-				HeroID:        heroID,
-				MovementSpeed: moveSpeed,
-				Icon:          key + "_png.png",
+				Name:                 shortKey,
+				Key:                  key,
+				HeroID:               heroID,
+				MovementSpeed:        moveSpeed,
+				AttackAnimationPoint: aap,
+				Icon:                 key + "_png.png",
 			})
 		} else {
 			// key-value pair, skip value
