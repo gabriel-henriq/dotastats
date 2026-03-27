@@ -602,6 +602,7 @@ function RadarView({ initialPatch, onPatchChange, selectedIds, onSelectedChange 
           heroes={heroesAtPatch}
           selectedIds={selectedIds}
           onSelectedChange={onSelectedChange}
+          currentPatch={currentPatch}
         />
       </div>
       <PatchTimeline
