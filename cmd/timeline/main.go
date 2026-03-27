@@ -198,8 +198,21 @@ func main() {
 	patchData, _ := os.ReadFile("data/patchnotes_english.txt")
 	content := strings.ReplaceAll(string(patchData), "\r", "")
 
+	// First pass: collect ALL patch versions across all stats
+	allPatchSet := map[string]bool{}
 	for _, stat := range stats {
-		timeline := buildTimeline(stat, heroes, heroByName, content, patchData)
+		collectPatches(stat, content, allPatchSet)
+	}
+	allPatches := make([]string, 0, len(allPatchSet))
+	for p := range allPatchSet {
+		allPatches = append(allPatches, p)
+	}
+	sort.Slice(allPatches, func(i, j int) bool {
+		return comparePatchVersions(allPatches[i], allPatches[j])
+	})
+
+	for _, stat := range stats {
+		timeline := buildTimeline(stat, heroes, heroByName, content, patchData, allPatches)
 		out, _ := json.MarshalIndent(timeline, "", "  ")
 
 		filename := fmt.Sprintf("timeline_%s.json", stat.name)
@@ -226,7 +239,27 @@ type msChange struct {
 	increase bool
 }
 
-func buildTimeline(stat statConfig, heroes []Hero, heroByName map[string]*Hero, content string, patchData []byte) TimelineData {
+func collectPatches(stat statConfig, content string, patchSet map[string]bool) {
+	lines := strings.Split(content, "\n")
+	for _, line := range lines {
+		line = strings.TrimSpace(line)
+		if !strings.HasPrefix(line, "\"DOTA_Patch_") {
+			continue
+		}
+		keyStr, _ := extractKV(line)
+		if keyStr == "" {
+			continue
+		}
+		m := rePatchKey.FindStringSubmatch(keyStr)
+		if m == nil {
+			continue
+		}
+		patchVer := strings.Replace(m[1], "_", ".", 1)
+		patchSet[patchVer] = true
+	}
+}
+
+func buildTimeline(stat statConfig, heroes []Hero, heroByName map[string]*Hero, content string, patchData []byte, allPatches []string) TimelineData {
 	var changes []msChange
 	patchOrder := []string{}
 	patchSeen := map[string]bool{}
@@ -387,19 +420,33 @@ func buildTimeline(stat statConfig, heroes []Hero, heroByName map[string]*Hero, 
 		results[i], results[j] = results[j], results[i]
 	}
 
-	// Build forward
+	// Index results by patch for quick lookup
+	resultsByPatch := map[string]patchResult{}
+	for _, r := range results {
+		resultsByPatch[r.patch] = r
+	}
+
+	// Build forward using allPatches so every stat has the same patch list
 	snapshots := []PatchSnapshot{}
 	fwdValues := copyMapF(values)
 
-	for _, r := range results {
-		for _, c := range r.changes {
-			fwdValues[c.Hero] = c.To
+	for _, patch := range allPatches {
+		r, hasChanges := resultsByPatch[patch]
+		if hasChanges {
+			for _, c := range r.changes {
+				fwdValues[c.Hero] = c.To
+			}
 		}
 
 		snapshots = append(snapshots, PatchSnapshot{
-			Patch:   r.patch,
-			Values:  filterValuesByPatch(fwdValues, heroAddedPatch, r.patch),
-			Changes: r.changes,
+			Patch:   patch,
+			Values:  filterValuesByPatch(fwdValues, heroAddedPatch, patch),
+			Changes: func() []PatchChange {
+				if hasChanges {
+					return r.changes
+				}
+				return nil
+			}(),
 		})
 
 		fwdValues = copyMapF(fwdValues)

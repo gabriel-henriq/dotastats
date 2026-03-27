@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { STATS } from "./App";
+import { STATS } from "./stats";
 
 interface HeroData {
   name: string;

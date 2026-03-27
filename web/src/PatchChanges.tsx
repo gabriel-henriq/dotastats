@@ -26,7 +26,7 @@ export function PatchChanges({ changes, side, label, patch, invertColor }: Props
           >
             {label} — {patch}
           </div>
-          <div className="space-y-1.5 overflow-y-auto flex-1 min-h-0">
+          <div className="space-y-1.5 overflow-y-auto flex-1 min-h-0 custom-scroll">
             {changes.map((c) => {
               const diff = c.to - c.from;
               return (

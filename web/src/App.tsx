@@ -3,6 +3,9 @@ import { MovespeedChart } from "./MovespeedChart";
 import { PatchTimeline } from "./PatchTimeline";
 import { PatchChanges } from "./PatchChanges";
 import { ScatterPlot } from "./ScatterPlot";
+import { RadarChart } from "./RadarChart";
+import { STATS } from "./stats";
+import type { StatDef } from "./stats";
 
 export interface Hero {
   name: string;
@@ -36,32 +39,15 @@ interface TimelineData {
   snapshots: PatchSnapshot[];
 }
 
-export interface StatDef {
-  id: string;
-  label: string;
-  short: string;
-  file: string;
-  lowerIsBetter?: boolean;
-  heroKey: string; // key in heroes.json
-}
 
-export const STATS: StatDef[] = [
-  { id: "movespeed", label: "Movement Speed", short: "MS", file: "timeline_movespeed.json", heroKey: "movementSpeed" },
-  { id: "aap", label: "Attack Animation", short: "AAP", file: "timeline_aap.json", lowerIsBetter: true, heroKey: "attackAnimationPoint" },
-  { id: "armor", label: "Base Armor", short: "ARM", file: "timeline_armor.json", heroKey: "armorPhysical" },
-  { id: "attack_range", label: "Attack Range", short: "RNG", file: "timeline_attack_range.json", heroKey: "attackRange" },
-  { id: "bat", label: "Base Attack Time", short: "BAT", file: "timeline_bat.json", lowerIsBetter: true, heroKey: "attackRate" },
-  { id: "turn_rate", label: "Turn Rate", short: "TR", file: "timeline_turn_rate.json", heroKey: "movementTurnRate" },
-  { id: "projectile_speed", label: "Projectile Speed", short: "PS", file: "timeline_projectile_speed.json", heroKey: "projectileSpeed" },
-];
-
-type ViewMode = { type: "stat"; statId: string } | { type: "scatter" };
+type ViewMode = { type: "stat"; statId: string } | { type: "scatter" } | { type: "radar" };
 
 interface HashState {
   view: ViewMode;
   patch?: string;
   scatterX?: string;
   scatterY?: string;
+  radarHeroes?: number[];
 }
 
 function parseHash(): HashState {
@@ -77,6 +63,12 @@ function parseHash(): HashState {
       scatterY: parts[3] || undefined,
     };
   }
+  if (viewPart === "radar") {
+    const radarHeroes = parts[2]
+      ? parts[2].split(",").map(Number).filter((n) => !isNaN(n) && n > 0)
+      : undefined;
+    return { view: { type: "radar" }, patch, radarHeroes };
+  }
   if (viewPart && STATS.some((s) => s.id === viewPart)) {
     return { view: { type: "stat", statId: viewPart }, patch };
   }
@@ -84,14 +76,17 @@ function parseHash(): HashState {
 }
 
 function buildHash(state: HashState): string {
-  const viewPart = state.view.type === "scatter" ? "scatter" : state.view.statId;
+  const viewPart = state.view.type === "scatter" ? "scatter" : state.view.type === "radar" ? "radar" : state.view.statId;
   const parts = [viewPart];
   if (state.patch) parts.push(state.patch);
   if (state.view.type === "scatter") {
-    // Ensure patch slot exists even if empty
     if (!state.patch) parts.push("");
     parts.push(state.scatterX || "movementSpeed");
     parts.push(state.scatterY || "armorPhysical");
+  }
+  if (state.view.type === "radar" && state.radarHeroes && state.radarHeroes.length > 0) {
+    if (!state.patch) parts.push("");
+    parts.push(state.radarHeroes.join(","));
   }
   return parts.join("@");
 }
@@ -102,6 +97,7 @@ function App() {
   const [savedPatch, setSavedPatch] = useState<string | undefined>(initial.patch);
   const [scatterX, setScatterX] = useState(initial.scatterX || "movementSpeed");
   const [scatterY, setScatterY] = useState(initial.scatterY || "armorPhysical");
+  const [radarHeroes, setRadarHeroes] = useState<number[]>(initial.radarHeroes || []);
 
   const syncHash = (overrides?: Partial<HashState>) => {
     const state: HashState = {
@@ -109,6 +105,7 @@ function App() {
       patch: overrides?.patch ?? savedPatch,
       scatterX: overrides?.scatterX ?? scatterX,
       scatterY: overrides?.scatterY ?? scatterY,
+      radarHeroes: overrides?.radarHeroes ?? radarHeroes,
     };
     window.location.hash = buildHash(state);
   };
@@ -129,6 +126,11 @@ function App() {
     syncHash({ scatterX: x, scatterY: y });
   };
 
+  const onRadarHeroesChange = (ids: number[]) => {
+    setRadarHeroes(ids);
+    syncHash({ radarHeroes: ids });
+  };
+
   useEffect(() => {
     const onHash = () => {
       const parsed = parseHash();
@@ -136,6 +138,7 @@ function App() {
       if (parsed.patch) setSavedPatch(parsed.patch);
       if (parsed.scatterX) setScatterX(parsed.scatterX);
       if (parsed.scatterY) setScatterY(parsed.scatterY);
+      if (parsed.radarHeroes) setRadarHeroes(parsed.radarHeroes);
     };
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
@@ -194,6 +197,19 @@ function App() {
             </span>
             Scatter Plot
           </button>
+          <button
+            onClick={() => setView({ type: "radar" })}
+            className={`w-full text-left px-3 py-2 rounded-md text-xs transition-colors flex items-center gap-2 ${
+              view.type === "radar"
+                ? "bg-purple-600/20 text-purple-400 border border-purple-500/30"
+                : "text-gray-400 hover:bg-gray-800/50 hover:text-gray-300 border border-transparent"
+            }`}
+          >
+            <span className="font-mono text-[10px] w-6 text-gray-500 shrink-0">
+              ◇
+            </span>
+            Radar Compare
+          </button>
         </div>
       </nav>
 
@@ -201,6 +217,13 @@ function App() {
       <div className="flex-1 flex flex-col min-w-0">
         {view.type === "stat" ? (
           <StatView statId={view.statId} initialPatch={savedPatch} onPatchChange={onPatchChange} />
+        ) : view.type === "radar" ? (
+          <RadarView
+            initialPatch={savedPatch}
+            onPatchChange={onPatchChange}
+            selectedIds={radarHeroes}
+            onSelectedChange={onRadarHeroesChange}
+          />
         ) : (
           <ScatterView
             initialPatch={savedPatch}
@@ -419,6 +442,95 @@ function getValueAtPatch(
     }
   }
   return lastVal;
+}
+
+function RadarView({ initialPatch, onPatchChange, selectedIds, onSelectedChange }: {
+  initialPatch?: string;
+  onPatchChange: (p: string) => void;
+  selectedIds: number[];
+  onSelectedChange: (ids: number[]) => void;
+}) {
+  const [data, setData] = useState<AllTimelines | null>(null);
+  const [patchIndex, setPatchIndex] = useState(0);
+
+  useEffect(() => {
+    Promise.all(
+      STATS.map((s) =>
+        fetch(import.meta.env.BASE_URL + s.file)
+          .then((r) => r.json())
+          .then((t: any) => ({ stat: s, timeline: t }))
+      )
+    ).then((results) => {
+      const heroes = results[0].timeline.heroes as Hero[];
+      const patchSet = new Set<string>();
+      for (const r of results) {
+        for (const snap of r.timeline.snapshots) patchSet.add(snap.patch);
+      }
+      const allPatches = [...patchSet].sort((a, b) => {
+        if (comparePatchVersions(a, b)) return -1;
+        if (comparePatchVersions(b, a)) return 1;
+        return 0;
+      });
+      const statData: AllTimelines["statData"] = {};
+      for (const r of results) {
+        const patches = r.timeline.snapshots.map((s: any) => s.patch);
+        const snapshots: Record<string, Record<string, number>> = {};
+        for (const snap of r.timeline.snapshots) snapshots[snap.patch] = snap.values;
+        statData[r.stat.heroKey] = { patches, snapshots };
+      }
+      setData({ heroes, statData, allPatches });
+      if (initialPatch) {
+        const idx = allPatches.indexOf(initialPatch);
+        setPatchIndex(idx >= 0 ? idx : allPatches.length - 1);
+      } else {
+        setPatchIndex(allPatches.length - 1);
+      }
+    });
+  }, []);
+
+  if (!data) return null;
+
+  const currentPatch = data.allPatches[patchIndex];
+  const heroesAtPatch = data.heroes
+    .map((h) => {
+      const hero: Record<string, any> = { ...h };
+      let hasAnyValue = false;
+      for (const stat of STATS) {
+        const sd = data.statData[stat.heroKey];
+        const val = getValueAtPatch(sd, currentPatch, h.name, data.allPatches);
+        if (val !== undefined) {
+          hero[stat.heroKey] = val;
+          hasAnyValue = true;
+        }
+      }
+      return hasAnyValue ? hero : null;
+    })
+    .filter((h): h is Record<string, any> => h !== null);
+
+  const snapshots = data.allPatches.map((p) => ({
+    patch: p,
+    values: {} as Record<string, number>,
+  }));
+
+  return (
+    <>
+      <div className="flex-1 flex flex-col min-h-0 p-4">
+        <RadarChart
+          heroes={heroesAtPatch}
+          selectedIds={selectedIds}
+          onSelectedChange={onSelectedChange}
+        />
+      </div>
+      <PatchTimeline
+        snapshots={snapshots}
+        currentIndex={patchIndex}
+        onChange={(idx) => {
+          setPatchIndex(idx);
+          onPatchChange(data.allPatches[idx]);
+        }}
+      />
+    </>
+  );
 }
 
 function comparePatchVersions(a: string, b: string): boolean {
