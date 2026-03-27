@@ -34,6 +34,7 @@ func main() {
 
 	out, _ := json.MarshalIndent(heroes, "", "  ")
 	os.WriteFile("data/heroes.json", out, 0644)
+	os.WriteFile("web/public/heroes.json", out, 0644)
 	fmt.Printf("Parsed %d heroes\n", len(heroes))
 }
 
