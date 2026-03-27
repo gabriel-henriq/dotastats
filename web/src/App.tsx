@@ -39,7 +39,7 @@ function App() {
   const [patchIndex, setPatchIndex] = useState(0);
 
   useEffect(() => {
-    fetch("/timeline.json")
+    fetch(import.meta.env.BASE_URL + "timeline.json")
       .then((r) => r.json())
       .then((data: TimelineData) => {
         setTimeline(data);

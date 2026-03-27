@@ -341,7 +341,7 @@ const GhostIcon = forwardRef<
       style={{ width: size, height: size, margin: `${GAP}px auto` }}
     >
       <img
-        src={`/icons/${ghost.icon}`}
+        src={`${import.meta.env.BASE_URL}icons/${ghost.icon}`}
         alt=""
         className="w-full h-full object-cover rounded-sm grayscale opacity-30"
       />
@@ -376,7 +376,7 @@ const HeroIcon = forwardRef<
       }}
     >
       <img
-        src={`/icons/${hero.icon}`}
+        src={`${import.meta.env.BASE_URL}icons/${hero.icon}`}
         alt={hero.name}
         className={`w-full h-full object-cover rounded-sm transition-shadow duration-500 ${ringClass}`}
         loading="lazy"
@@ -387,7 +387,7 @@ const HeroIcon = forwardRef<
         <div className="bg-[#0c1520] border border-gray-700 rounded-lg shadow-xl p-2.5 min-w-[180px]">
           <div className="flex items-center gap-2 mb-1.5 pb-1.5 border-b border-gray-700/50">
             <img
-              src={`/icons/${hero.icon}`}
+              src={`${import.meta.env.BASE_URL}icons/${hero.icon}`}
               alt=""
               className="w-7 h-7 rounded-sm"
             />

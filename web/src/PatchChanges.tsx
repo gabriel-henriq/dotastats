@@ -35,7 +35,7 @@ export function PatchChanges({ changes, side, label, patch }: Props) {
                   }`}
                 >
                   <img
-                    src={`/icons/npc_dota_hero_${c.hero}_png.png`}
+                    src={`${import.meta.env.BASE_URL}icons/npc_dota_hero_${c.hero}_png.png`}
                     alt={c.hero}
                     className="w-6 h-6 rounded-sm shrink-0"
                   />
