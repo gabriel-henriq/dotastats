@@ -207,9 +207,9 @@ export function MovespeedChart({ heroes, heroHistory, changes, statId }: Props) 
   return (
     <div
       ref={containerRef}
-      className="flex justify-center items-end w-full h-full"
+      className="flex items-end w-full h-full overflow-x-auto overflow-y-hidden custom-scroll"
     >
-      <div ref={chartInnerRef} className="inline-flex items-end relative">
+      <div ref={chartInnerRef} className="inline-flex items-end relative mx-auto">
         {/* Arrow SVG overlay */}
         {arrows.length > 0 && (
           <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none z-10">
@@ -399,8 +399,8 @@ const HeroIcon = forwardRef<
               className="w-7 h-7 rounded-sm"
             />
             <div>
-              <div className="text-white text-xs font-bold capitalize">
-                {hero.name.replace(/_/g, " ")}
+              <div className="text-white text-xs font-bold">
+                {hero.displayName}
               </div>
               <div className="text-blue-400 text-[11px] font-mono font-bold">
                 {Number.isInteger(hero.statValue) ? hero.statValue : hero.statValue.toFixed(3)}

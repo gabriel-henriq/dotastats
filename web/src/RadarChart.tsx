@@ -3,6 +3,7 @@ import { STATS } from "./stats";
 
 interface HeroData {
   name: string;
+  displayName: string;
   heroId: number;
   icon: string;
   [key: string]: any;
@@ -22,7 +23,11 @@ const COLORS = [
 ];
 
 const MAX_HEROES = 4;
-const RADAR_STATS = STATS.filter((s) => s.heroKey !== "projectileSpeed");
+
+const DEFAULT_RADAR_KEYS = new Set([
+  "movementSpeed", "armorPhysical", "attackRange", "attackRate",
+  "baseStrength", "baseAgility", "baseIntelligence",
+]);
 
 const CX = 300;
 const CY = 270;
@@ -30,6 +35,25 @@ const RADIUS = 210;
 
 export function RadarChart({ heroes, selectedIds, onSelectedChange }: Props) {
   const [search, setSearch] = useState("");
+  const [enabledStats, setEnabledStats] = useState<Set<string>>(DEFAULT_RADAR_KEYS);
+
+  const RADAR_STATS = useMemo(
+    () => STATS.filter((s) => enabledStats.has(s.heroKey)),
+    [enabledStats],
+  );
+
+  const toggleStat = (key: string) => {
+    setEnabledStats((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) {
+        if (next.size <= 3) return prev;
+        next.delete(key);
+      } else {
+        next.add(key);
+      }
+      return next;
+    });
+  };
   const [hoveredVertex, setHoveredVertex] = useState<{
     heroId: number;
     statIdx: number;
@@ -48,10 +72,12 @@ export function RadarChart({ heroes, selectedIds, onSelectedChange }: Props) {
       r[stat.heroKey] = { min: Math.min(...vals), max: Math.max(...vals) };
     }
     return r;
-  }, [heroes]);
+  }, [heroes, RADAR_STATS]);
 
   const normalize = (stat: (typeof RADAR_STATS)[number], val: number) => {
-    const { min, max } = ranges[stat.heroKey];
+    const range = ranges[stat.heroKey];
+    if (!range) return 0.5;
+    const { min, max } = range;
     if (max === min) return 0.5;
     let norm = (val - min) / (max - min);
     if (stat.lowerIsBetter) norm = 1 - norm;
@@ -73,9 +99,9 @@ export function RadarChart({ heroes, selectedIds, onSelectedChange }: Props) {
     }
   };
 
-  const searchLower = search.toLowerCase().replace(/_/g, " ");
+  const searchLower = search.toLowerCase();
   const filteredHeroes = searchLower
-    ? heroes.filter((h) => h.name.replace(/_/g, " ").includes(searchLower))
+    ? heroes.filter((h) => h.displayName.toLowerCase().includes(searchLower))
     : heroes;
 
   const statCount = RADAR_STATS.length;
@@ -129,8 +155,8 @@ export function RadarChart({ heroes, selectedIds, onSelectedChange }: Props) {
                   alt=""
                   className="w-5 h-5 rounded-sm"
                 />
-                <span className="text-gray-300 capitalize truncate flex-1 text-left">
-                  {hero.name.replace(/_/g, " ")}
+                <span className="text-gray-300 truncate flex-1 text-left">
+                  {hero.displayName}
                 </span>
                 {isSelected && (
                   <span
@@ -141,6 +167,31 @@ export function RadarChart({ heroes, selectedIds, onSelectedChange }: Props) {
               </button>
             );
           })}
+        </div>
+
+        {/* Stat toggles */}
+        <div className="mt-3 pt-3 border-t border-gray-800/50">
+          <div className="text-[10px] text-gray-500 mb-1 px-1">
+            Axes (min 3)
+          </div>
+          <div className="space-y-0.5">
+            {STATS.filter((s) => s.heroKey !== "projectileSpeed").map((s) => (
+              <button
+                key={s.heroKey}
+                onClick={() => toggleStat(s.heroKey)}
+                className={`w-full flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] transition-colors ${
+                  enabledStats.has(s.heroKey)
+                    ? "text-gray-200 bg-gray-700/40"
+                    : "text-gray-600 hover:text-gray-400"
+                }`}
+              >
+                <span className={`w-2 h-2 rounded-sm shrink-0 ${
+                  enabledStats.has(s.heroKey) ? "bg-blue-500" : "bg-gray-700"
+                }`} />
+                {s.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -363,10 +414,10 @@ export function RadarChart({ heroes, selectedIds, onSelectedChange }: Props) {
                   const color = COLORS[hi % COLORS.length];
                   const val = Number(h[stat.heroKey]) || 0;
                   if (h.heroId === hoveredVertex.heroId) {
-                    lines.unshift({ name: h.name, val, color: color.stroke });
+                    lines.unshift({ name: h.displayName, val, color: color.stroke });
                   } else {
                     const diff = hoveredVertex.value - val;
-                    lines.push({ name: h.name, val, color: color.stroke, diff });
+                    lines.push({ name: h.displayName, val, color: color.stroke, diff });
                   }
                 }
 
@@ -408,9 +459,8 @@ export function RadarChart({ heroes, selectedIds, onSelectedChange }: Props) {
                             y={ly}
                             className="text-[11px] font-bold"
                             fill={l.color}
-                            style={{ textTransform: "capitalize" }}
                           >
-                            {l.name.replace(/_/g, " ")}
+                            {l.name}
                           </text>
                           <text
                             x={tx + boxW - 8}
@@ -527,9 +577,9 @@ export function RadarChart({ heroes, selectedIds, onSelectedChange }: Props) {
                     className="w-7 h-7 rounded-sm"
                   />
                   <span
-                    className={`text-sm font-bold capitalize flex-1 ${color.label}`}
+                    className={`text-sm font-bold flex-1 ${color.label}`}
                   >
-                    {hero.name.replace(/_/g, " ")}
+                    {hero.displayName}
                   </span>
                   <button
                     onClick={() => toggleHero(hero.heroId)}

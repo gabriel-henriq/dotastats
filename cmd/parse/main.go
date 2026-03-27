@@ -10,6 +10,7 @@ import (
 
 type Hero struct {
 	Name                 string  `json:"name"`
+	DisplayName          string  `json:"displayName"`
 	Key                  string  `json:"key"`
 	HeroID               int     `json:"heroId"`
 	MovementSpeed        int     `json:"movementSpeed"`
@@ -19,7 +20,56 @@ type Hero struct {
 	AttackRate           float64 `json:"attackRate"`
 	MovementTurnRate     float64 `json:"movementTurnRate"`
 	ProjectileSpeed      int     `json:"projectileSpeed"`
+	BaseStrength         int     `json:"baseStrength"`
+	BaseAgility          int     `json:"baseAgility"`
+	BaseIntelligence     int     `json:"baseIntelligence"`
+	StrengthGain         float64 `json:"strengthGain"`
+	AgilityGain          float64 `json:"agilityGain"`
+	IntelligenceGain     float64 `json:"intelligenceGain"`
+	AttackDamageMin      int     `json:"attackDamageMin"`
+	AttackDamageMax      int     `json:"attackDamageMax"`
+	AttributePrimary     string  `json:"attributePrimary"`
+	HealthRegen          float64 `json:"healthRegen"`
+	MagicResistance      float64 `json:"magicResistance"`
+	DayVision            int     `json:"dayVision"`
+	NightVision          int     `json:"nightVision"`
 	Icon                 string  `json:"icon"`
+}
+
+var displayNames = map[string]string{
+	"antimage":            "Anti-Mage",
+	"nevermore":           "Shadow Fiend",
+	"vengefulspirit":      "Vengeful Spirit",
+	"windrunner":          "Windranger",
+	"zuus":                "Zeus",
+	"necrolyte":           "Necrophos",
+	"queenofpain":         "Queen of Pain",
+	"skeleton_king":       "Wraith King",
+	"rattletrap":          "Clockwerk",
+	"furion":              "Nature's Prophet",
+	"life_stealer":        "Lifestealer",
+	"doom_bringer":        "Doom",
+	"obsidian_destroyer":  "Outworld Destroyer",
+	"wisp":                "Io",
+	"magnataur":           "Magnus",
+	"shredder":            "Timbersaw",
+	"treant":              "Treant Protector",
+	"centaur":             "Centaur Warrunner",
+	"abyssal_underlord":   "Underlord",
+	"keeper_of_the_light": "Keeper of the Light",
+}
+
+func heroDisplayName(internalName string) string {
+	if name, ok := displayNames[internalName]; ok {
+		return name
+	}
+	words := strings.Split(internalName, "_")
+	for i, w := range words {
+		if len(w) > 0 {
+			words[i] = strings.ToUpper(w[:1]) + w[1:]
+		}
+	}
+	return strings.Join(words, " ")
 }
 
 func main() {
@@ -174,10 +224,49 @@ func parseHeroes(content string) []Hero {
 
 			projectileSpeed, _ := strconv.Atoi(props["ProjectileSpeed"])
 
+			baseStr, _ := strconv.Atoi(props["AttributeBaseStrength"])
+			baseAgi, _ := strconv.Atoi(props["AttributeBaseAgility"])
+			baseInt, _ := strconv.Atoi(props["AttributeBaseIntelligence"])
+			strGain, _ := strconv.ParseFloat(props["AttributeStrengthGain"], 64)
+			agiGain, _ := strconv.ParseFloat(props["AttributeAgilityGain"], 64)
+			intGain, _ := strconv.ParseFloat(props["AttributeIntelligenceGain"], 64)
+			dmgMin, _ := strconv.Atoi(props["AttackDamageMin"])
+			dmgMax, _ := strconv.Atoi(props["AttackDamageMax"])
+
+			attrPrimary := "str"
+			switch props["AttributePrimary"] {
+			case "DOTA_ATTRIBUTE_AGILITY":
+				attrPrimary = "agi"
+			case "DOTA_ATTRIBUTE_INTELLECT":
+				attrPrimary = "int"
+			case "DOTA_ATTRIBUTE_ALL":
+				attrPrimary = "all"
+			}
+
+			hpRegen, _ := strconv.ParseFloat(props["StatusHealthRegen"], 64)
+			if _, ok := props["StatusHealthRegen"]; !ok {
+				hpRegen = 0.25
+			}
+
+			magicRes, _ := strconv.ParseFloat(props["MagicalResistance"], 64)
+			if _, ok := props["MagicalResistance"]; !ok {
+				magicRes = 25
+			}
+
+			dayVision, _ := strconv.Atoi(props["VisionDaytimeRange"])
+			if dayVision == 0 {
+				dayVision = 1800
+			}
+			nightVision, _ := strconv.Atoi(props["VisionNighttimeRange"])
+			if nightVision == 0 {
+				nightVision = 800
+			}
+
 			shortKey := strings.TrimPrefix(key, "npc_dota_hero_")
 
 			heroes = append(heroes, Hero{
 				Name:                 shortKey,
+				DisplayName:          heroDisplayName(shortKey),
 				Key:                  key,
 				HeroID:               heroID,
 				MovementSpeed:        moveSpeed,
@@ -187,6 +276,19 @@ func parseHeroes(content string) []Hero {
 				AttackRate:           attackRate,
 				MovementTurnRate:     turnRate,
 				ProjectileSpeed:      projectileSpeed,
+				BaseStrength:         baseStr,
+				BaseAgility:          baseAgi,
+				BaseIntelligence:     baseInt,
+				StrengthGain:         strGain,
+				AgilityGain:          agiGain,
+				IntelligenceGain:     intGain,
+				AttackDamageMin:      dmgMin,
+				AttackDamageMax:      dmgMax,
+				AttributePrimary:     attrPrimary,
+				HealthRegen:          hpRegen,
+				MagicResistance:      magicRes,
+				DayVision:            dayVision,
+				NightVision:          nightVision,
 				Icon:                 key + "_png.png",
 			})
 		} else {

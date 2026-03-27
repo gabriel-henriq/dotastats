@@ -3,6 +3,7 @@ import { STATS } from "./stats";
 
 interface HeroData {
   name: string;
+  displayName: string;
   key: string;
   heroId: number;
   icon: string;
@@ -70,12 +71,12 @@ export function ScatterPlot({ heroes, initialX, initialY, onAxesChange }: Props)
   }, [xStat, yStat]);
 
   // Search matching
-  const searchLower = search.toLowerCase().replace(/_/g, " ");
+  const searchLower = search.toLowerCase();
   const matchedHeroes = useMemo(() => {
     if (!searchLower) return new Set<string>();
     return new Set(
       heroes
-        .filter((h) => h.name.replace(/_/g, " ").includes(searchLower))
+        .filter((h) => h.displayName.toLowerCase().includes(searchLower))
         .map((h) => h.name),
     );
   }, [heroes, searchLower]);
@@ -391,8 +392,8 @@ export function ScatterPlot({ heroes, initialX, initialY, onAxesChange }: Props)
                         className="w-4 h-4 rounded-sm"
                         alt=""
                       />
-                      <span className="text-[10px] text-gray-300 capitalize">
-                        {h.name.replace(/_/g, " ")}
+                      <span className="text-[10px] text-gray-300">
+                        {h.displayName}
                       </span>
                     </div>
                   ))}
@@ -481,8 +482,8 @@ function HeroIcon({
         style={{ zIndex: 50 }}
       >
         <div className="bg-[#0c1520] border border-gray-700 rounded-lg shadow-xl p-2 min-w-[140px]">
-          <div className="text-white text-xs font-bold capitalize mb-1">
-            {hero.name.replace(/_/g, " ")}
+          <div className="text-white text-xs font-bold mb-1">
+            {hero.displayName}
           </div>
           <div className="text-[10px] text-gray-400 space-y-0.5">
             <div>

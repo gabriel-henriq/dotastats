@@ -13,6 +13,7 @@ import (
 
 type Hero struct {
 	Name                 string  `json:"name"`
+	DisplayName          string  `json:"displayName"`
 	Key                  string  `json:"key"`
 	HeroID               int     `json:"heroId"`
 	MovementSpeed        int     `json:"movementSpeed"`
@@ -22,6 +23,19 @@ type Hero struct {
 	AttackRate           float64 `json:"attackRate"`
 	MovementTurnRate     float64 `json:"movementTurnRate"`
 	ProjectileSpeed      int     `json:"projectileSpeed"`
+	BaseStrength         int     `json:"baseStrength"`
+	BaseAgility          int     `json:"baseAgility"`
+	BaseIntelligence     int     `json:"baseIntelligence"`
+	StrengthGain         float64 `json:"strengthGain"`
+	AgilityGain          float64 `json:"agilityGain"`
+	IntelligenceGain     float64 `json:"intelligenceGain"`
+	AttackDamageMin      int     `json:"attackDamageMin"`
+	AttackDamageMax      int     `json:"attackDamageMax"`
+	AttributePrimary     string  `json:"attributePrimary"`
+	HealthRegen          float64 `json:"healthRegen"`
+	MagicResistance      float64 `json:"magicResistance"`
+	DayVision            int     `json:"dayVision"`
+	NightVision          int     `json:"nightVision"`
 	Icon                 string  `json:"icon"`
 	AddedPatch           string  `json:"addedPatch,omitempty"`
 }
@@ -156,6 +170,124 @@ var stats = []statConfig{
 				return false
 			}
 			return strings.Contains(lower, "projectile speed")
+		},
+	},
+	{
+		name:     "base_str",
+		label:    "Base Strength",
+		getValue: func(h Hero) float64 { return float64(h.BaseStrength) },
+		reFromTo: regexp.MustCompile(`(?i)base (?:str(?:ength)?) (?:increased|reduced|decreased|changed) from (\d+) to (\d+)`),
+		reByN:    regexp.MustCompile(`(?i)base (?:str(?:ength)?) (?:increased|reduced|decreased) by (\d+)`),
+		patchFilter: func(key, val string) bool {
+			lower := strings.ToLower(val)
+			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
+				return false
+			}
+			return strings.Contains(lower, "base strength") || strings.Contains(lower, "base str ")
+		},
+	},
+	{
+		name:     "base_agi",
+		label:    "Base Agility",
+		getValue: func(h Hero) float64 { return float64(h.BaseAgility) },
+		reFromTo: regexp.MustCompile(`(?i)base (?:agi(?:lity)?) (?:increased|reduced|decreased|changed) from (\d+) to (\d+)`),
+		reByN:    regexp.MustCompile(`(?i)base (?:agi(?:lity)?) (?:increased|reduced|decreased) by (\d+)`),
+		patchFilter: func(key, val string) bool {
+			lower := strings.ToLower(val)
+			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
+				return false
+			}
+			return strings.Contains(lower, "base agility") || strings.Contains(lower, "base agi ")
+		},
+	},
+	{
+		name:     "base_int",
+		label:    "Base Intelligence",
+		getValue: func(h Hero) float64 { return float64(h.BaseIntelligence) },
+		reFromTo: regexp.MustCompile(`(?i)base (?:int(?:elligence)?) (?:increased|reduced|decreased|changed) from (\d+) to (\d+)`),
+		reByN:    regexp.MustCompile(`(?i)base (?:int(?:elligence)?) (?:increased|reduced|decreased) by (\d+)`),
+		patchFilter: func(key, val string) bool {
+			lower := strings.ToLower(val)
+			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
+				return false
+			}
+			return strings.Contains(lower, "base intelligence") || strings.Contains(lower, "base int ")
+		},
+	},
+	{
+		name:     "str_gain",
+		label:    "Strength Gain",
+		getValue: func(h Hero) float64 { return h.StrengthGain },
+		reFromTo: regexp.MustCompile(`(?i)(?:str(?:ength)?) gain (?:increased|reduced|decreased|changed) from (\d+\.?\d*) to (\d+\.?\d*)`),
+		reByN:    regexp.MustCompile(`(?i)(?:str(?:ength)?) gain (?:increased|reduced|decreased) by (\d+\.?\d*)`),
+		patchFilter: func(key, val string) bool {
+			lower := strings.ToLower(val)
+			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
+				return false
+			}
+			return strings.Contains(lower, "strength gain") || strings.Contains(lower, "str gain")
+		},
+	},
+	{
+		name:     "agi_gain",
+		label:    "Agility Gain",
+		getValue: func(h Hero) float64 { return h.AgilityGain },
+		reFromTo: regexp.MustCompile(`(?i)(?:agi(?:lity)?) gain (?:increased|reduced|decreased|changed) from (\d+\.?\d*) to (\d+\.?\d*)`),
+		reByN:    regexp.MustCompile(`(?i)(?:agi(?:lity)?) gain (?:increased|reduced|decreased) by (\d+\.?\d*)`),
+		patchFilter: func(key, val string) bool {
+			lower := strings.ToLower(val)
+			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
+				return false
+			}
+			return strings.Contains(lower, "agility gain") || strings.Contains(lower, "agi gain")
+		},
+	},
+	{
+		name:     "int_gain",
+		label:    "Intelligence Gain",
+		getValue: func(h Hero) float64 { return h.IntelligenceGain },
+		reFromTo: regexp.MustCompile(`(?i)(?:int(?:elligence)?) gain (?:increased|reduced|decreased|changed) from (\d+\.?\d*) to (\d+\.?\d*)`),
+		reByN:    nil,
+		patchFilter: func(key, val string) bool {
+			lower := strings.ToLower(val)
+			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
+				return false
+			}
+			return strings.Contains(lower, "intelligence gain") || strings.Contains(lower, "int gain")
+		},
+	},
+	{
+		name:     "base_damage",
+		label:    "Base Damage",
+		getValue: func(h Hero) float64 { return float64(h.AttackDamageMin+h.AttackDamageMax) / 2 },
+		reFromTo: regexp.MustCompile(`(?i)base (?:attack )?damage (?:increased|reduced|decreased|changed) from (\d+) to (\d+)`),
+		reByN:    regexp.MustCompile(`(?i)base (?:attack )?damage (?:increased|reduced|decreased) by (\d+)`),
+		patchFilter: func(key, val string) bool {
+			lower := strings.ToLower(val)
+			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
+				return false
+			}
+			if strings.Contains(lower, "bonus base damage") {
+				return false
+			}
+			return strings.Contains(lower, "base damage") || strings.Contains(lower, "base attack damage")
+		},
+	},
+	{
+		name:     "health_regen",
+		label:    "Health Regen",
+		getValue: func(h Hero) float64 { return h.HealthRegen },
+		reFromTo: regexp.MustCompile(`(?i)base (?:hp|health) regen(?:eration)? (?:increased|reduced|decreased|changed) from (\d+\.?\d*) to (\d+\.?\d*)`),
+		reByN:    nil,
+		patchFilter: func(key, val string) bool {
+			lower := strings.ToLower(val)
+			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
+				return false
+			}
+			if strings.Contains(lower, "spirit bear") || strings.Contains(lower, "eidolon") || strings.Contains(lower, "treant") {
+				return false
+			}
+			return (strings.Contains(lower, "base health regen") || strings.Contains(lower, "base hp regen")) && !strings.Contains(lower, "aura")
 		},
 	},
 }

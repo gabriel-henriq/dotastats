@@ -4,11 +4,13 @@ import { PatchTimeline } from "./PatchTimeline";
 import { PatchChanges } from "./PatchChanges";
 import { ScatterPlot } from "./ScatterPlot";
 import { RadarChart } from "./RadarChart";
+import { DeltaView } from "./DeltaView";
 import { STATS } from "./stats";
 import type { StatDef } from "./stats";
 
 export interface Hero {
   name: string;
+  displayName: string;
   key: string;
   heroId: number;
   icon: string;
@@ -40,7 +42,7 @@ interface TimelineData {
 }
 
 
-type ViewMode = { type: "stat"; statId: string } | { type: "scatter" } | { type: "radar" };
+type ViewMode = { type: "stat"; statId: string } | { type: "scatter" } | { type: "radar" } | { type: "delta" };
 
 interface HashState {
   view: ViewMode;
@@ -48,6 +50,8 @@ interface HashState {
   scatterX?: string;
   scatterY?: string;
   radarHeroes?: number[];
+  deltaPatchA?: string;
+  deltaPatchB?: string;
 }
 
 function parseHash(): HashState {
@@ -55,6 +59,13 @@ function parseHash(): HashState {
   const viewPart = parts[0] || "";
   const patch = parts[1] || undefined;
 
+  if (viewPart === "delta") {
+    return {
+      view: { type: "delta" },
+      deltaPatchA: parts[1] || undefined,
+      deltaPatchB: parts[2] || undefined,
+    };
+  }
   if (viewPart === "scatter") {
     return {
       view: { type: "scatter" },
@@ -76,6 +87,12 @@ function parseHash(): HashState {
 }
 
 function buildHash(state: HashState): string {
+  if (state.view.type === "delta") {
+    const parts = ["delta"];
+    if (state.deltaPatchA) parts.push(state.deltaPatchA);
+    if (state.deltaPatchB) parts.push(state.deltaPatchB);
+    return parts.join("@");
+  }
   const viewPart = state.view.type === "scatter" ? "scatter" : state.view.type === "radar" ? "radar" : state.view.statId;
   const parts = [viewPart];
   if (state.patch) parts.push(state.patch);
@@ -98,6 +115,8 @@ function App() {
   const [scatterX, setScatterX] = useState(initial.scatterX || "movementSpeed");
   const [scatterY, setScatterY] = useState(initial.scatterY || "armorPhysical");
   const [radarHeroes, setRadarHeroes] = useState<number[]>(initial.radarHeroes || []);
+  const [deltaPatchA, setDeltaPatchA] = useState<string | undefined>(initial.deltaPatchA);
+  const [deltaPatchB, setDeltaPatchB] = useState<string | undefined>(initial.deltaPatchB);
 
   const syncHash = (overrides?: Partial<HashState>) => {
     const state: HashState = {
@@ -106,6 +125,8 @@ function App() {
       scatterX: overrides?.scatterX ?? scatterX,
       scatterY: overrides?.scatterY ?? scatterY,
       radarHeroes: overrides?.radarHeroes ?? radarHeroes,
+      deltaPatchA: overrides?.deltaPatchA ?? deltaPatchA,
+      deltaPatchB: overrides?.deltaPatchB ?? deltaPatchB,
     };
     window.location.hash = buildHash(state);
   };
@@ -131,6 +152,15 @@ function App() {
     syncHash({ radarHeroes: ids });
   };
 
+  const onDeltaPatchAChange = (p: string) => {
+    setDeltaPatchA(p);
+    syncHash({ deltaPatchA: p });
+  };
+  const onDeltaPatchBChange = (p: string) => {
+    setDeltaPatchB(p);
+    syncHash({ deltaPatchB: p });
+  };
+
   useEffect(() => {
     const onHash = () => {
       const parsed = parseHash();
@@ -139,6 +169,8 @@ function App() {
       if (parsed.scatterX) setScatterX(parsed.scatterX);
       if (parsed.scatterY) setScatterY(parsed.scatterY);
       if (parsed.radarHeroes) setRadarHeroes(parsed.radarHeroes);
+      if (parsed.deltaPatchA) setDeltaPatchA(parsed.deltaPatchA);
+      if (parsed.deltaPatchB) setDeltaPatchB(parsed.deltaPatchB);
     };
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
@@ -147,7 +179,7 @@ function App() {
   return (
     <div className="h-screen flex overflow-hidden bg-[#0f1923]">
       {/* Sidebar */}
-      <nav className="w-48 shrink-0 bg-[#0a1219] border-r border-gray-800/50 flex flex-col py-4">
+      <nav className="w-48 shrink-0 bg-[#0a1219] border-r border-gray-800/50 flex flex-col py-4 overflow-y-auto custom-scroll">
         <div className="px-4 mb-4">
           <h1 className="text-sm font-bold text-gray-100 tracking-tight">
             Dota 2 Stats
@@ -156,15 +188,39 @@ function App() {
 
         <div className="px-3 mb-2">
           <div className="text-[9px] uppercase tracking-widest text-gray-600 px-1 mb-1">
-            Stats
+            Combat
           </div>
         </div>
         <div className="px-2 space-y-0.5">
-          {STATS.map((s) => (
+          {STATS.filter((s) => s.group === "combat").map((s) => (
             <button
               key={s.id}
               onClick={() => setView({ type: "stat", statId: s.id })}
-              className={`w-full text-left px-3 py-2 rounded-md text-xs transition-colors flex items-center gap-2 ${
+              className={`w-full text-left px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-2 ${
+                view.type === "stat" && view.statId === s.id
+                  ? "bg-blue-600/20 text-blue-400 border border-blue-500/30"
+                  : "text-gray-400 hover:bg-gray-800/50 hover:text-gray-300 border border-transparent"
+              }`}
+            >
+              <span className="font-mono text-[10px] w-6 text-gray-500 shrink-0">
+                {s.short}
+              </span>
+              {s.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="px-3 mt-3 mb-2">
+          <div className="text-[9px] uppercase tracking-widest text-gray-600 px-1 mb-1">
+            Attributes
+          </div>
+        </div>
+        <div className="px-2 space-y-0.5">
+          {STATS.filter((s) => s.group === "attributes").map((s) => (
+            <button
+              key={s.id}
+              onClick={() => setView({ type: "stat", statId: s.id })}
+              className={`w-full text-left px-3 py-1.5 rounded-md text-xs transition-colors flex items-center gap-2 ${
                 view.type === "stat" && view.statId === s.id
                   ? "bg-blue-600/20 text-blue-400 border border-blue-500/30"
                   : "text-gray-400 hover:bg-gray-800/50 hover:text-gray-300 border border-transparent"
@@ -210,6 +266,19 @@ function App() {
             </span>
             Radar Compare
           </button>
+          <button
+            onClick={() => setView({ type: "delta" })}
+            className={`w-full text-left px-3 py-2 rounded-md text-xs transition-colors flex items-center gap-2 ${
+              view.type === "delta"
+                ? "bg-purple-600/20 text-purple-400 border border-purple-500/30"
+                : "text-gray-400 hover:bg-gray-800/50 hover:text-gray-300 border border-transparent"
+            }`}
+          >
+            <span className="font-mono text-[10px] w-6 text-gray-500 shrink-0">
+              Δ
+            </span>
+            Patch Delta
+          </button>
         </div>
       </nav>
 
@@ -223,6 +292,13 @@ function App() {
             onPatchChange={onPatchChange}
             selectedIds={radarHeroes}
             onSelectedChange={onRadarHeroesChange}
+          />
+        ) : view.type === "delta" ? (
+          <DeltaViewWrapper
+            initialPatchA={deltaPatchA}
+            initialPatchB={deltaPatchB}
+            onPatchAChange={onDeltaPatchAChange}
+            onPatchBChange={onDeltaPatchBChange}
           />
         ) : (
           <ScatterView
@@ -274,6 +350,13 @@ function StatView({ statId, initialPatch, onPatchChange }: { statId: string; ini
     return history;
   }, [timeline]);
 
+  const heroNames = useMemo(() => {
+    if (!timeline) return {};
+    const m: Record<string, string> = {};
+    for (const h of timeline.heroes) m[h.name] = h.displayName;
+    return m;
+  }, [timeline]);
+
   if (!timeline || loading) return null;
 
   const snapshot = timeline.snapshots[patchIndex];
@@ -289,7 +372,7 @@ function StatView({ statId, initialPatch, onPatchChange }: { statId: string; ini
   return (
     <>
       <div className="flex-1 flex min-h-0">
-        <PatchChanges changes={buffs} side="left" label="Buffs" patch={snapshot.patch} />
+        <PatchChanges changes={buffs} side="left" label="Buffs" patch={snapshot.patch} heroNames={heroNames} />
         <div className="flex-1 flex flex-col items-center justify-center min-w-0">
           <h2 className="text-lg font-bold text-gray-100 tracking-tight mt-2">
             {statDef.label}
@@ -306,7 +389,7 @@ function StatView({ statId, initialPatch, onPatchChange }: { statId: string; ini
             />
           </div>
         </div>
-        <PatchChanges changes={nerfs} side="right" label="Nerfs" patch={snapshot.patch} />
+        <PatchChanges changes={nerfs} side="right" label="Nerfs" patch={snapshot.patch} heroNames={heroNames} />
       </div>
       <PatchTimeline
         snapshots={timeline.snapshots}
@@ -530,6 +613,70 @@ function RadarView({ initialPatch, onPatchChange, selectedIds, onSelectedChange 
         }}
       />
     </>
+  );
+}
+
+function DeltaViewWrapper({ initialPatchA, initialPatchB, onPatchAChange, onPatchBChange }: {
+  initialPatchA?: string;
+  initialPatchB?: string;
+  onPatchAChange: (p: string) => void;
+  onPatchBChange: (p: string) => void;
+}) {
+  const [data, setData] = useState<AllTimelines | null>(null);
+  const [patchA, setPatchA] = useState(initialPatchA || "");
+  const [patchB, setPatchB] = useState(initialPatchB || "");
+
+  useEffect(() => {
+    Promise.all(
+      STATS.map((s) =>
+        fetch(import.meta.env.BASE_URL + s.file)
+          .then((r) => r.json())
+          .then((t: any) => ({ stat: s, timeline: t }))
+      )
+    ).then((results) => {
+      const heroes = results[0].timeline.heroes as Hero[];
+      const patchSet = new Set<string>();
+      for (const r of results) {
+        for (const snap of r.timeline.snapshots) patchSet.add(snap.patch);
+      }
+      const allPatches = [...patchSet].sort((a, b) => {
+        if (comparePatchVersions(a, b)) return -1;
+        if (comparePatchVersions(b, a)) return 1;
+        return 0;
+      });
+      const statData: AllTimelines["statData"] = {};
+      for (const r of results) {
+        const patches = r.timeline.snapshots.map((s: any) => s.patch);
+        const snapshots: Record<string, Record<string, number>> = {};
+        for (const snap of r.timeline.snapshots) snapshots[snap.patch] = snap.values;
+        statData[r.stat.heroKey] = { patches, snapshots };
+      }
+      setData({ heroes, statData, allPatches });
+
+      // Default: second-to-last → last patch
+      if (!patchA || !allPatches.includes(patchA)) {
+        const a = allPatches[allPatches.length - 2] || allPatches[0];
+        setPatchA(a);
+        onPatchAChange(a);
+      }
+      if (!patchB || !allPatches.includes(patchB)) {
+        const b = allPatches[allPatches.length - 1];
+        setPatchB(b);
+        onPatchBChange(b);
+      }
+    });
+  }, []);
+
+  if (!data) return null;
+
+  return (
+    <DeltaView
+      data={data}
+      patchA={patchA}
+      patchB={patchB}
+      onPatchAChange={(p) => { setPatchA(p); onPatchAChange(p); }}
+      onPatchBChange={(p) => { setPatchB(p); onPatchBChange(p); }}
+    />
   );
 }
 

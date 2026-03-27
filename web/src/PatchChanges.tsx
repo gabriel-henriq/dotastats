@@ -5,6 +5,7 @@ interface Props {
   side: "left" | "right";
   label: string;
   patch: string;
+  heroNames?: Record<string, string>;
   invertColor?: boolean;
 }
 
@@ -12,7 +13,7 @@ function fmt(v: number) {
   return Number.isInteger(v) ? String(v) : v.toFixed(2);
 }
 
-export function PatchChanges({ changes, side, label, patch, invertColor }: Props) {
+export function PatchChanges({ changes, side, label, patch, heroNames, invertColor }: Props) {
   const isLeft = side === "left";
 
   return (
@@ -44,8 +45,8 @@ export function PatchChanges({ changes, side, label, patch, invertColor }: Props
                     className="w-6 h-6 rounded-sm shrink-0"
                   />
                   <div className="min-w-0 flex-1">
-                    <div className="text-[11px] text-gray-300 truncate capitalize">
-                      {c.hero.replace(/_/g, " ")}
+                    <div className="text-[11px] text-gray-300 truncate">
+                      {heroNames?.[c.hero] || c.hero.replace(/_/g, " ")}
                     </div>
                     <div className="flex items-center gap-1">
                       <span className="text-[10px] font-mono text-gray-500">
