@@ -7,8 +7,6 @@ export interface Hero {
   name: string;
   key: string;
   heroId: number;
-  movementSpeed: number;
-  attackAnimationPoint: number;
   icon: string;
 }
 
@@ -37,9 +35,22 @@ interface TimelineData {
   snapshots: PatchSnapshot[];
 }
 
-const STATS = [
-  { id: "movespeed", label: "Movement Speed", file: "timeline_movespeed.json" },
-  { id: "aap", label: "Attack Animation Point", file: "timeline_aap.json" },
+interface StatDef {
+  id: string;
+  label: string;
+  short: string;
+  file: string;
+  lowerIsBetter?: boolean;
+}
+
+const STATS: StatDef[] = [
+  { id: "movespeed", label: "Movement Speed", short: "MS", file: "timeline_movespeed.json" },
+  { id: "aap", label: "Attack Animation", short: "AAP", file: "timeline_aap.json", lowerIsBetter: true },
+  { id: "armor", label: "Base Armor", short: "ARM", file: "timeline_armor.json" },
+  { id: "attack_range", label: "Attack Range", short: "RNG", file: "timeline_attack_range.json" },
+  { id: "bat", label: "Base Attack Time", short: "BAT", file: "timeline_bat.json", lowerIsBetter: true },
+  { id: "turn_rate", label: "Turn Rate", short: "TR", file: "timeline_turn_rate.json" },
+  { id: "projectile_speed", label: "Projectile Speed", short: "PS", file: "timeline_projectile_speed.json" },
 ];
 
 function App() {
@@ -88,76 +99,87 @@ function App() {
     }));
 
   const changes = snapshot.changes || [];
-  const buffs = changes.filter((c) => {
-    // For AAP, lower is better (buff), for movespeed, higher is better
-    if (statId === "aap") return c.to < c.from;
-    return c.to > c.from;
-  });
-  const nerfs = changes.filter((c) => {
-    if (statId === "aap") return c.to > c.from;
-    return c.to < c.from;
-  });
+  const lowerIsBetter = statDef.lowerIsBetter;
+  const buffs = changes.filter((c) =>
+    lowerIsBetter ? c.to < c.from : c.to > c.from,
+  );
+  const nerfs = changes.filter((c) =>
+    lowerIsBetter ? c.to > c.from : c.to < c.from,
+  );
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden bg-[#0f1923]">
-      <div className="flex-1 flex min-h-0">
-        <PatchChanges
-          changes={buffs}
-          side="left"
-          label="Buffs"
-          patch={snapshot.patch}
-          invertColor={statId === "aap"}
-        />
+    <div className="h-screen flex overflow-hidden bg-[#0f1923]">
+      {/* Sidebar */}
+      <nav className="w-48 shrink-0 bg-[#0a1219] border-r border-gray-800/50 flex flex-col py-4">
+        <div className="px-4 mb-4">
+          <h1 className="text-sm font-bold text-gray-100 tracking-tight">
+            Dota 2 Stats
+          </h1>
+          <p className="text-[10px] text-gray-600 mt-0.5">
+            {heroesAtPatch.length} heroes &middot; Patch {snapshot.patch}
+          </p>
+        </div>
+        <div className="flex-1 px-2 space-y-0.5">
+          {STATS.map((s) => (
+            <button
+              key={s.id}
+              onClick={() => setStatId(s.id)}
+              className={`w-full text-left px-3 py-2 rounded-md text-xs transition-colors flex items-center gap-2 ${
+                statId === s.id
+                  ? "bg-blue-600/20 text-blue-400 border border-blue-500/30"
+                  : "text-gray-400 hover:bg-gray-800/50 hover:text-gray-300 border border-transparent"
+              }`}
+            >
+              <span className="font-mono text-[10px] w-6 text-gray-500 shrink-0">
+                {s.short}
+              </span>
+              {s.label}
+            </button>
+          ))}
+        </div>
+      </nav>
 
-        <div className="flex-1 flex flex-col items-center justify-center min-w-0">
-          {/* Header with stat picker */}
-          <div className="flex items-center gap-3 mt-2">
-            <h1 className="text-xl font-bold text-gray-100 tracking-tight">
-              Dota 2 — {statDef.label}
+      {/* Main content */}
+      <div className="flex-1 flex flex-col min-w-0">
+        <div className="flex-1 flex min-h-0">
+          <PatchChanges
+            changes={buffs}
+            side="left"
+            label="Buffs"
+            patch={snapshot.patch}
+          />
+
+          <div className="flex-1 flex flex-col items-center justify-center min-w-0">
+            <h2 className="text-lg font-bold text-gray-100 tracking-tight mt-2">
+              {statDef.label}
               <span className="text-sm font-normal text-gray-500 ml-2">
                 {heroesAtPatch.length} heroes
               </span>
-            </h1>
-            <div className="flex gap-1 ml-3">
-              {STATS.map((s) => (
-                <button
-                  key={s.id}
-                  onClick={() => setStatId(s.id)}
-                  className={`px-2.5 py-1 rounded text-xs transition-colors ${
-                    statId === s.id
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-800/60 text-gray-400 hover:bg-gray-700 hover:text-gray-300"
-                  }`}
-                >
-                  {s.label}
-                </button>
-              ))}
+            </h2>
+            <div className="flex-1 flex items-center justify-center w-full min-h-0 px-2">
+              <MovespeedChart
+                heroes={heroesAtPatch}
+                heroHistory={heroHistory}
+                changes={changes}
+                statId={statId}
+              />
             </div>
           </div>
-          <div className="flex-1 flex items-center justify-center w-full min-h-0 px-2">
-            <MovespeedChart
-              heroes={heroesAtPatch}
-              heroHistory={heroHistory}
-              changes={changes}
-              statId={statId}
-            />
-          </div>
+
+          <PatchChanges
+            changes={nerfs}
+            side="right"
+            label="Nerfs"
+            patch={snapshot.patch}
+          />
         </div>
 
-        <PatchChanges
-          changes={nerfs}
-          side="right"
-          label="Nerfs"
-          patch={snapshot.patch}
-          invertColor={statId === "aap"}
+        <PatchTimeline
+          snapshots={timeline.snapshots}
+          currentIndex={patchIndex}
+          onChange={setPatchIndex}
         />
       </div>
-
-      <PatchTimeline
-        snapshots={timeline.snapshots}
-        currentIndex={patchIndex}
-        onChange={setPatchIndex}
-      />
     </div>
   );
 }

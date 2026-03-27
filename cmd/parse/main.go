@@ -14,6 +14,11 @@ type Hero struct {
 	HeroID               int     `json:"heroId"`
 	MovementSpeed        int     `json:"movementSpeed"`
 	AttackAnimationPoint float64 `json:"attackAnimationPoint"`
+	ArmorPhysical        float64 `json:"armorPhysical"`
+	AttackRange          int     `json:"attackRange"`
+	AttackRate           float64 `json:"attackRate"`
+	MovementTurnRate     float64 `json:"movementTurnRate"`
+	ProjectileSpeed      int     `json:"projectileSpeed"`
 	Icon                 string  `json:"icon"`
 }
 
@@ -145,6 +150,29 @@ func parseHeroes(content string) []Hero {
 				aap = 0.75
 			}
 
+			armor, _ := strconv.ParseFloat(props["ArmorPhysical"], 64)
+			// base default is -1 from npc_dota_hero_base
+			if _, ok := props["ArmorPhysical"]; !ok {
+				armor = -1
+			}
+
+			attackRange, _ := strconv.Atoi(props["AttackRange"])
+			if attackRange == 0 {
+				attackRange = 600
+			}
+
+			attackRate, _ := strconv.ParseFloat(props["AttackRate"], 64)
+			if attackRate == 0 {
+				attackRate = 1.7
+			}
+
+			turnRate, _ := strconv.ParseFloat(props["MovementTurnRate"], 64)
+			if turnRate == 0 {
+				turnRate = 0.6
+			}
+
+			projectileSpeed, _ := strconv.Atoi(props["ProjectileSpeed"])
+
 			shortKey := strings.TrimPrefix(key, "npc_dota_hero_")
 
 			heroes = append(heroes, Hero{
@@ -153,6 +181,11 @@ func parseHeroes(content string) []Hero {
 				HeroID:               heroID,
 				MovementSpeed:        moveSpeed,
 				AttackAnimationPoint: aap,
+				ArmorPhysical:        armor,
+				AttackRange:          attackRange,
+				AttackRate:           attackRate,
+				MovementTurnRate:     turnRate,
+				ProjectileSpeed:      projectileSpeed,
 				Icon:                 key + "_png.png",
 			})
 		} else {

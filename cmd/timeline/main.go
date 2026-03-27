@@ -17,6 +17,11 @@ type Hero struct {
 	HeroID               int     `json:"heroId"`
 	MovementSpeed        int     `json:"movementSpeed"`
 	AttackAnimationPoint float64 `json:"attackAnimationPoint"`
+	ArmorPhysical        float64 `json:"armorPhysical"`
+	AttackRange          int     `json:"attackRange"`
+	AttackRate           float64 `json:"attackRate"`
+	MovementTurnRate     float64 `json:"movementTurnRate"`
+	ProjectileSpeed      int     `json:"projectileSpeed"`
 	Icon                 string  `json:"icon"`
 	AddedPatch           string  `json:"addedPatch,omitempty"`
 }
@@ -71,7 +76,7 @@ var stats = []statConfig{
 		label: "Attack Animation Point",
 		getValue: func(h Hero) float64 { return h.AttackAnimationPoint },
 		reFromTo: regexp.MustCompile(`(?i)attack (?:animation(?:\s+time)?|point) (?:improved|reduced|increased|decreased|changed) from (\d+\.?\d*) to (\d+\.?\d*)`),
-		reByN:    nil, // AAP changes are always from/to, never "by N"
+		reByN:    nil,
 		patchFilter: func(key, val string) bool {
 			lower := strings.ToLower(val)
 			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
@@ -81,6 +86,76 @@ var stats = []statConfig{
 				return false
 			}
 			return strings.Contains(lower, "attack point") || strings.Contains(lower, "attack animation")
+		},
+	},
+	{
+		name:     "armor",
+		label:    "Base Armor",
+		getValue: func(h Hero) float64 { return h.ArmorPhysical },
+		reFromTo: regexp.MustCompile(`(?i)(?:base )?armor (?:increased|reduced|decreased|changed) from (-?\d+\.?\d*) to (-?\d+\.?\d*)`),
+		reByN:    regexp.MustCompile(`(?i)(?:base )?armor (?:increased|reduced|decreased) by (\d+)`),
+		patchFilter: func(key, val string) bool {
+			lower := strings.ToLower(val)
+			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
+				return false
+			}
+			return strings.Contains(lower, "armor") && !strings.Contains(lower, "spiderling") && !strings.Contains(lower, "spiderite") && !strings.Contains(lower, "brewling") && !strings.Contains(lower, "eidolon") && !strings.Contains(lower, "familiar")
+		},
+	},
+	{
+		name:     "attack_range",
+		label:    "Attack Range",
+		getValue: func(h Hero) float64 { return float64(h.AttackRange) },
+		reFromTo: regexp.MustCompile(`(?i)(?:base )?attack range (?:increased|reduced|decreased|changed) from (\d+) to (\d+)`),
+		reByN:    regexp.MustCompile(`(?i)(?:base )?attack range (?:increased|reduced|decreased) by (\d+)`),
+		patchFilter: func(key, val string) bool {
+			lower := strings.ToLower(val)
+			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
+				return false
+			}
+			return strings.Contains(lower, "attack range")
+		},
+	},
+	{
+		name:     "bat",
+		label:    "Base Attack Time",
+		getValue: func(h Hero) float64 { return h.AttackRate },
+		reFromTo: regexp.MustCompile(`(?i)base attack time (?:improved|increased|reduced|decreased|changed) from (\d+\.?\d*) to (\d+\.?\d*)`),
+		reByN:    nil,
+		patchFilter: func(key, val string) bool {
+			lower := strings.ToLower(val)
+			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
+				return false
+			}
+			return strings.Contains(lower, "base attack time")
+		},
+	},
+	{
+		name:     "turn_rate",
+		label:    "Turn Rate",
+		getValue: func(h Hero) float64 { return h.MovementTurnRate },
+		reFromTo: regexp.MustCompile(`(?i)turn rate (?:improved|increased|reduced|decreased|changed) from (\d+\.?\d*) to (\d+\.?\d*)`),
+		reByN:    nil,
+		patchFilter: func(key, val string) bool {
+			lower := strings.ToLower(val)
+			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
+				return false
+			}
+			return strings.Contains(lower, "turn rate")
+		},
+	},
+	{
+		name:     "projectile_speed",
+		label:    "Projectile Speed",
+		getValue: func(h Hero) float64 { return float64(h.ProjectileSpeed) },
+		reFromTo: regexp.MustCompile(`(?i)projectile speed (?:increased|reduced|decreased|changed) from (\d+) to (\d+)`),
+		reByN:    regexp.MustCompile(`(?i)projectile speed (?:increased|reduced|decreased) by (\d+)`),
+		patchFilter: func(key, val string) bool {
+			lower := strings.ToLower(val)
+			if strings.Contains(lower, "talent") || strings.Contains(lower, "level ") {
+				return false
+			}
+			return strings.Contains(lower, "projectile speed")
 		},
 	},
 }
