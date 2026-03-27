@@ -1,0 +1,891 @@
+[
+  {
+    "name": "antimage",
+    "key": "npc_dota_hero_antimage",
+    "heroId": 1,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_antimage_png.png"
+  },
+  {
+    "name": "axe",
+    "key": "npc_dota_hero_axe",
+    "heroId": 2,
+    "movementSpeed": 315,
+    "icon": "npc_dota_hero_axe_png.png"
+  },
+  {
+    "name": "bane",
+    "key": "npc_dota_hero_bane",
+    "heroId": 3,
+    "movementSpeed": 305,
+    "icon": "npc_dota_hero_bane_png.png"
+  },
+  {
+    "name": "bloodseeker",
+    "key": "npc_dota_hero_bloodseeker",
+    "heroId": 4,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_bloodseeker_png.png"
+  },
+  {
+    "name": "crystal_maiden",
+    "key": "npc_dota_hero_crystal_maiden",
+    "heroId": 5,
+    "movementSpeed": 280,
+    "icon": "npc_dota_hero_crystal_maiden_png.png"
+  },
+  {
+    "name": "drow_ranger",
+    "key": "npc_dota_hero_drow_ranger",
+    "heroId": 6,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_drow_ranger_png.png"
+  },
+  {
+    "name": "earthshaker",
+    "key": "npc_dota_hero_earthshaker",
+    "heroId": 7,
+    "movementSpeed": 315,
+    "icon": "npc_dota_hero_earthshaker_png.png"
+  },
+  {
+    "name": "juggernaut",
+    "key": "npc_dota_hero_juggernaut",
+    "heroId": 8,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_juggernaut_png.png"
+  },
+  {
+    "name": "mirana",
+    "key": "npc_dota_hero_mirana",
+    "heroId": 9,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_mirana_png.png"
+  },
+  {
+    "name": "nevermore",
+    "key": "npc_dota_hero_nevermore",
+    "heroId": 11,
+    "movementSpeed": 305,
+    "icon": "npc_dota_hero_nevermore_png.png"
+  },
+  {
+    "name": "morphling",
+    "key": "npc_dota_hero_morphling",
+    "heroId": 10,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_morphling_png.png"
+  },
+  {
+    "name": "phantom_lancer",
+    "key": "npc_dota_hero_phantom_lancer",
+    "heroId": 12,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_phantom_lancer_png.png"
+  },
+  {
+    "name": "puck",
+    "key": "npc_dota_hero_puck",
+    "heroId": 13,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_puck_png.png"
+  },
+  {
+    "name": "pudge",
+    "key": "npc_dota_hero_pudge",
+    "heroId": 14,
+    "movementSpeed": 280,
+    "icon": "npc_dota_hero_pudge_png.png"
+  },
+  {
+    "name": "razor",
+    "key": "npc_dota_hero_razor",
+    "heroId": 15,
+    "movementSpeed": 280,
+    "icon": "npc_dota_hero_razor_png.png"
+  },
+  {
+    "name": "sand_king",
+    "key": "npc_dota_hero_sand_king",
+    "heroId": 16,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_sand_king_png.png"
+  },
+  {
+    "name": "storm_spirit",
+    "key": "npc_dota_hero_storm_spirit",
+    "heroId": 17,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_storm_spirit_png.png"
+  },
+  {
+    "name": "sven",
+    "key": "npc_dota_hero_sven",
+    "heroId": 18,
+    "movementSpeed": 325,
+    "icon": "npc_dota_hero_sven_png.png"
+  },
+  {
+    "name": "tiny",
+    "key": "npc_dota_hero_tiny",
+    "heroId": 19,
+    "movementSpeed": 275,
+    "icon": "npc_dota_hero_tiny_png.png"
+  },
+  {
+    "name": "vengefulspirit",
+    "key": "npc_dota_hero_vengefulspirit",
+    "heroId": 20,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_vengefulspirit_png.png"
+  },
+  {
+    "name": "windrunner",
+    "key": "npc_dota_hero_windrunner",
+    "heroId": 21,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_windrunner_png.png"
+  },
+  {
+    "name": "zuus",
+    "key": "npc_dota_hero_zuus",
+    "heroId": 22,
+    "movementSpeed": 305,
+    "icon": "npc_dota_hero_zuus_png.png"
+  },
+  {
+    "name": "kunkka",
+    "key": "npc_dota_hero_kunkka",
+    "heroId": 23,
+    "movementSpeed": 315,
+    "icon": "npc_dota_hero_kunkka_png.png"
+  },
+  {
+    "name": "lina",
+    "key": "npc_dota_hero_lina",
+    "heroId": 25,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_lina_png.png"
+  },
+  {
+    "name": "lich",
+    "key": "npc_dota_hero_lich",
+    "heroId": 31,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_lich_png.png"
+  },
+  {
+    "name": "lion",
+    "key": "npc_dota_hero_lion",
+    "heroId": 26,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_lion_png.png"
+  },
+  {
+    "name": "shadow_shaman",
+    "key": "npc_dota_hero_shadow_shaman",
+    "heroId": 27,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_shadow_shaman_png.png"
+  },
+  {
+    "name": "slardar",
+    "key": "npc_dota_hero_slardar",
+    "heroId": 28,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_slardar_png.png"
+  },
+  {
+    "name": "tidehunter",
+    "key": "npc_dota_hero_tidehunter",
+    "heroId": 29,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_tidehunter_png.png"
+  },
+  {
+    "name": "witch_doctor",
+    "key": "npc_dota_hero_witch_doctor",
+    "heroId": 30,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_witch_doctor_png.png"
+  },
+  {
+    "name": "riki",
+    "key": "npc_dota_hero_riki",
+    "heroId": 32,
+    "movementSpeed": 315,
+    "icon": "npc_dota_hero_riki_png.png"
+  },
+  {
+    "name": "enigma",
+    "key": "npc_dota_hero_enigma",
+    "heroId": 33,
+    "movementSpeed": 280,
+    "icon": "npc_dota_hero_enigma_png.png"
+  },
+  {
+    "name": "tinker",
+    "key": "npc_dota_hero_tinker",
+    "heroId": 34,
+    "movementSpeed": 305,
+    "icon": "npc_dota_hero_tinker_png.png"
+  },
+  {
+    "name": "sniper",
+    "key": "npc_dota_hero_sniper",
+    "heroId": 35,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_sniper_png.png"
+  },
+  {
+    "name": "necrolyte",
+    "key": "npc_dota_hero_necrolyte",
+    "heroId": 36,
+    "movementSpeed": 280,
+    "icon": "npc_dota_hero_necrolyte_png.png"
+  },
+  {
+    "name": "warlock",
+    "key": "npc_dota_hero_warlock",
+    "heroId": 37,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_warlock_png.png"
+  },
+  {
+    "name": "beastmaster",
+    "key": "npc_dota_hero_beastmaster",
+    "heroId": 38,
+    "movementSpeed": 305,
+    "icon": "npc_dota_hero_beastmaster_png.png"
+  },
+  {
+    "name": "queenofpain",
+    "key": "npc_dota_hero_queenofpain",
+    "heroId": 39,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_queenofpain_png.png"
+  },
+  {
+    "name": "venomancer",
+    "key": "npc_dota_hero_venomancer",
+    "heroId": 40,
+    "movementSpeed": 280,
+    "icon": "npc_dota_hero_venomancer_png.png"
+  },
+  {
+    "name": "faceless_void",
+    "key": "npc_dota_hero_faceless_void",
+    "heroId": 41,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_faceless_void_png.png"
+  },
+  {
+    "name": "skeleton_king",
+    "key": "npc_dota_hero_skeleton_king",
+    "heroId": 42,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_skeleton_king_png.png"
+  },
+  {
+    "name": "death_prophet",
+    "key": "npc_dota_hero_death_prophet",
+    "heroId": 43,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_death_prophet_png.png"
+  },
+  {
+    "name": "phantom_assassin",
+    "key": "npc_dota_hero_phantom_assassin",
+    "heroId": 44,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_phantom_assassin_png.png"
+  },
+  {
+    "name": "pugna",
+    "key": "npc_dota_hero_pugna",
+    "heroId": 45,
+    "movementSpeed": 325,
+    "icon": "npc_dota_hero_pugna_png.png"
+  },
+  {
+    "name": "templar_assassin",
+    "key": "npc_dota_hero_templar_assassin",
+    "heroId": 46,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_templar_assassin_png.png"
+  },
+  {
+    "name": "viper",
+    "key": "npc_dota_hero_viper",
+    "heroId": 47,
+    "movementSpeed": 275,
+    "icon": "npc_dota_hero_viper_png.png"
+  },
+  {
+    "name": "luna",
+    "key": "npc_dota_hero_luna",
+    "heroId": 48,
+    "movementSpeed": 325,
+    "icon": "npc_dota_hero_luna_png.png"
+  },
+  {
+    "name": "dragon_knight",
+    "key": "npc_dota_hero_dragon_knight",
+    "heroId": 49,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_dragon_knight_png.png"
+  },
+  {
+    "name": "dazzle",
+    "key": "npc_dota_hero_dazzle",
+    "heroId": 50,
+    "movementSpeed": 305,
+    "icon": "npc_dota_hero_dazzle_png.png"
+  },
+  {
+    "name": "rattletrap",
+    "key": "npc_dota_hero_rattletrap",
+    "heroId": 51,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_rattletrap_png.png"
+  },
+  {
+    "name": "leshrac",
+    "key": "npc_dota_hero_leshrac",
+    "heroId": 52,
+    "movementSpeed": 325,
+    "icon": "npc_dota_hero_leshrac_png.png"
+  },
+  {
+    "name": "furion",
+    "key": "npc_dota_hero_furion",
+    "heroId": 53,
+    "movementSpeed": 295,
+    "icon": "npc_dota_hero_furion_png.png"
+  },
+  {
+    "name": "life_stealer",
+    "key": "npc_dota_hero_life_stealer",
+    "heroId": 54,
+    "movementSpeed": 320,
+    "icon": "npc_dota_hero_life_stealer_png.png"
+  },
+  {
+    "name": "dark_seer",
+    "key": "npc_dota_hero_dark_seer",
+    "heroId": 55,
+    "movementSpeed": 295,
+    "icon": "npc_dota_hero_dark_seer_png.png"
+  },
+  {
+    "name": "clinkz",
+    "key": "npc_dota_hero_clinkz",
+    "heroId": 56,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_clinkz_png.png"
+  },
+  {
+    "name": "omniknight",
+    "key": "npc_dota_hero_omniknight",
+    "heroId": 57,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_omniknight_png.png"
+  },
+  {
+    "name": "enchantress",
+    "key": "npc_dota_hero_enchantress",
+    "heroId": 58,
+    "movementSpeed": 320,
+    "icon": "npc_dota_hero_enchantress_png.png"
+  },
+  {
+    "name": "huskar",
+    "key": "npc_dota_hero_huskar",
+    "heroId": 59,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_huskar_png.png"
+  },
+  {
+    "name": "night_stalker",
+    "key": "npc_dota_hero_night_stalker",
+    "heroId": 60,
+    "movementSpeed": 295,
+    "icon": "npc_dota_hero_night_stalker_png.png"
+  },
+  {
+    "name": "broodmother",
+    "key": "npc_dota_hero_broodmother",
+    "heroId": 61,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_broodmother_png.png"
+  },
+  {
+    "name": "bounty_hunter",
+    "key": "npc_dota_hero_bounty_hunter",
+    "heroId": 62,
+    "movementSpeed": 325,
+    "icon": "npc_dota_hero_bounty_hunter_png.png"
+  },
+  {
+    "name": "weaver",
+    "key": "npc_dota_hero_weaver",
+    "heroId": 63,
+    "movementSpeed": 275,
+    "icon": "npc_dota_hero_weaver_png.png"
+  },
+  {
+    "name": "jakiro",
+    "key": "npc_dota_hero_jakiro",
+    "heroId": 64,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_jakiro_png.png"
+  },
+  {
+    "name": "batrider",
+    "key": "npc_dota_hero_batrider",
+    "heroId": 65,
+    "movementSpeed": 320,
+    "icon": "npc_dota_hero_batrider_png.png"
+  },
+  {
+    "name": "chen",
+    "key": "npc_dota_hero_chen",
+    "heroId": 66,
+    "movementSpeed": 305,
+    "icon": "npc_dota_hero_chen_png.png"
+  },
+  {
+    "name": "spectre",
+    "key": "npc_dota_hero_spectre",
+    "heroId": 67,
+    "movementSpeed": 295,
+    "icon": "npc_dota_hero_spectre_png.png"
+  },
+  {
+    "name": "doom_bringer",
+    "key": "npc_dota_hero_doom_bringer",
+    "heroId": 69,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_doom_bringer_png.png"
+  },
+  {
+    "name": "ancient_apparition",
+    "key": "npc_dota_hero_ancient_apparition",
+    "heroId": 68,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_ancient_apparition_png.png"
+  },
+  {
+    "name": "ursa",
+    "key": "npc_dota_hero_ursa",
+    "heroId": 70,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_ursa_png.png"
+  },
+  {
+    "name": "spirit_breaker",
+    "key": "npc_dota_hero_spirit_breaker",
+    "heroId": 71,
+    "movementSpeed": 295,
+    "icon": "npc_dota_hero_spirit_breaker_png.png"
+  },
+  {
+    "name": "gyrocopter",
+    "key": "npc_dota_hero_gyrocopter",
+    "heroId": 72,
+    "movementSpeed": 315,
+    "icon": "npc_dota_hero_gyrocopter_png.png"
+  },
+  {
+    "name": "alchemist",
+    "key": "npc_dota_hero_alchemist",
+    "heroId": 73,
+    "movementSpeed": 295,
+    "icon": "npc_dota_hero_alchemist_png.png"
+  },
+  {
+    "name": "invoker",
+    "key": "npc_dota_hero_invoker",
+    "heroId": 74,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_invoker_png.png"
+  },
+  {
+    "name": "silencer",
+    "key": "npc_dota_hero_silencer",
+    "heroId": 75,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_silencer_png.png"
+  },
+  {
+    "name": "obsidian_destroyer",
+    "key": "npc_dota_hero_obsidian_destroyer",
+    "heroId": 76,
+    "movementSpeed": 315,
+    "icon": "npc_dota_hero_obsidian_destroyer_png.png"
+  },
+  {
+    "name": "lycan",
+    "key": "npc_dota_hero_lycan",
+    "heroId": 77,
+    "movementSpeed": 305,
+    "icon": "npc_dota_hero_lycan_png.png"
+  },
+  {
+    "name": "brewmaster",
+    "key": "npc_dota_hero_brewmaster",
+    "heroId": 78,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_brewmaster_png.png"
+  },
+  {
+    "name": "shadow_demon",
+    "key": "npc_dota_hero_shadow_demon",
+    "heroId": 79,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_shadow_demon_png.png"
+  },
+  {
+    "name": "lone_druid",
+    "key": "npc_dota_hero_lone_druid",
+    "heroId": 80,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_lone_druid_png.png"
+  },
+  {
+    "name": "chaos_knight",
+    "key": "npc_dota_hero_chaos_knight",
+    "heroId": 81,
+    "movementSpeed": 325,
+    "icon": "npc_dota_hero_chaos_knight_png.png"
+  },
+  {
+    "name": "meepo",
+    "key": "npc_dota_hero_meepo",
+    "heroId": 82,
+    "movementSpeed": 315,
+    "icon": "npc_dota_hero_meepo_png.png"
+  },
+  {
+    "name": "treant",
+    "key": "npc_dota_hero_treant",
+    "heroId": 83,
+    "movementSpeed": 280,
+    "icon": "npc_dota_hero_treant_png.png"
+  },
+  {
+    "name": "ogre_magi",
+    "key": "npc_dota_hero_ogre_magi",
+    "heroId": 84,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_ogre_magi_png.png"
+  },
+  {
+    "name": "undying",
+    "key": "npc_dota_hero_undying",
+    "heroId": 85,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_undying_png.png"
+  },
+  {
+    "name": "rubick",
+    "key": "npc_dota_hero_rubick",
+    "heroId": 86,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_rubick_png.png"
+  },
+  {
+    "name": "disruptor",
+    "key": "npc_dota_hero_disruptor",
+    "heroId": 87,
+    "movementSpeed": 295,
+    "icon": "npc_dota_hero_disruptor_png.png"
+  },
+  {
+    "name": "nyx_assassin",
+    "key": "npc_dota_hero_nyx_assassin",
+    "heroId": 88,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_nyx_assassin_png.png"
+  },
+  {
+    "name": "naga_siren",
+    "key": "npc_dota_hero_naga_siren",
+    "heroId": 89,
+    "movementSpeed": 330,
+    "icon": "npc_dota_hero_naga_siren_png.png"
+  },
+  {
+    "name": "keeper_of_the_light",
+    "key": "npc_dota_hero_keeper_of_the_light",
+    "heroId": 90,
+    "movementSpeed": 315,
+    "icon": "npc_dota_hero_keeper_of_the_light_png.png"
+  },
+  {
+    "name": "wisp",
+    "key": "npc_dota_hero_wisp",
+    "heroId": 91,
+    "movementSpeed": 320,
+    "icon": "npc_dota_hero_wisp_png.png"
+  },
+  {
+    "name": "visage",
+    "key": "npc_dota_hero_visage",
+    "heroId": 92,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_visage_png.png"
+  },
+  {
+    "name": "slark",
+    "key": "npc_dota_hero_slark",
+    "heroId": 93,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_slark_png.png"
+  },
+  {
+    "name": "medusa",
+    "key": "npc_dota_hero_medusa",
+    "heroId": 94,
+    "movementSpeed": 275,
+    "icon": "npc_dota_hero_medusa_png.png"
+  },
+  {
+    "name": "troll_warlord",
+    "key": "npc_dota_hero_troll_warlord",
+    "heroId": 95,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_troll_warlord_png.png"
+  },
+  {
+    "name": "centaur",
+    "key": "npc_dota_hero_centaur",
+    "heroId": 96,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_centaur_png.png"
+  },
+  {
+    "name": "magnataur",
+    "key": "npc_dota_hero_magnataur",
+    "heroId": 97,
+    "movementSpeed": 305,
+    "icon": "npc_dota_hero_magnataur_png.png"
+  },
+  {
+    "name": "shredder",
+    "key": "npc_dota_hero_shredder",
+    "heroId": 98,
+    "movementSpeed": 280,
+    "icon": "npc_dota_hero_shredder_png.png"
+  },
+  {
+    "name": "bristleback",
+    "key": "npc_dota_hero_bristleback",
+    "heroId": 99,
+    "movementSpeed": 295,
+    "icon": "npc_dota_hero_bristleback_png.png"
+  },
+  {
+    "name": "tusk",
+    "key": "npc_dota_hero_tusk",
+    "heroId": 100,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_tusk_png.png"
+  },
+  {
+    "name": "skywrath_mage",
+    "key": "npc_dota_hero_skywrath_mage",
+    "heroId": 101,
+    "movementSpeed": 325,
+    "icon": "npc_dota_hero_skywrath_mage_png.png"
+  },
+  {
+    "name": "abaddon",
+    "key": "npc_dota_hero_abaddon",
+    "heroId": 102,
+    "movementSpeed": 325,
+    "icon": "npc_dota_hero_abaddon_png.png"
+  },
+  {
+    "name": "elder_titan",
+    "key": "npc_dota_hero_elder_titan",
+    "heroId": 103,
+    "movementSpeed": 305,
+    "icon": "npc_dota_hero_elder_titan_png.png"
+  },
+  {
+    "name": "legion_commander",
+    "key": "npc_dota_hero_legion_commander",
+    "heroId": 104,
+    "movementSpeed": 325,
+    "icon": "npc_dota_hero_legion_commander_png.png"
+  },
+  {
+    "name": "ember_spirit",
+    "key": "npc_dota_hero_ember_spirit",
+    "heroId": 106,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_ember_spirit_png.png"
+  },
+  {
+    "name": "earth_spirit",
+    "key": "npc_dota_hero_earth_spirit",
+    "heroId": 107,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_earth_spirit_png.png"
+  },
+  {
+    "name": "terrorblade",
+    "key": "npc_dota_hero_terrorblade",
+    "heroId": 109,
+    "movementSpeed": 315,
+    "icon": "npc_dota_hero_terrorblade_png.png"
+  },
+  {
+    "name": "phoenix",
+    "key": "npc_dota_hero_phoenix",
+    "heroId": 110,
+    "movementSpeed": 280,
+    "icon": "npc_dota_hero_phoenix_png.png"
+  },
+  {
+    "name": "oracle",
+    "key": "npc_dota_hero_oracle",
+    "heroId": 111,
+    "movementSpeed": 295,
+    "icon": "npc_dota_hero_oracle_png.png"
+  },
+  {
+    "name": "techies",
+    "key": "npc_dota_hero_techies",
+    "heroId": 105,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_techies_png.png"
+  },
+  {
+    "name": "winter_wyvern",
+    "key": "npc_dota_hero_winter_wyvern",
+    "heroId": 112,
+    "movementSpeed": 285,
+    "icon": "npc_dota_hero_winter_wyvern_png.png"
+  },
+  {
+    "name": "arc_warden",
+    "key": "npc_dota_hero_arc_warden",
+    "heroId": 113,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_arc_warden_png.png"
+  },
+  {
+    "name": "abyssal_underlord",
+    "key": "npc_dota_hero_abyssal_underlord",
+    "heroId": 108,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_abyssal_underlord_png.png"
+  },
+  {
+    "name": "monkey_king",
+    "key": "npc_dota_hero_monkey_king",
+    "heroId": 114,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_monkey_king_png.png"
+  },
+  {
+    "name": "pangolier",
+    "key": "npc_dota_hero_pangolier",
+    "heroId": 120,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_pangolier_png.png"
+  },
+  {
+    "name": "dark_willow",
+    "key": "npc_dota_hero_dark_willow",
+    "heroId": 119,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_dark_willow_png.png"
+  },
+  {
+    "name": "grimstroke",
+    "key": "npc_dota_hero_grimstroke",
+    "heroId": 121,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_grimstroke_png.png"
+  },
+  {
+    "name": "mars",
+    "key": "npc_dota_hero_mars",
+    "heroId": 129,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_mars_png.png"
+  },
+  {
+    "name": "void_spirit",
+    "key": "npc_dota_hero_void_spirit",
+    "heroId": 126,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_void_spirit_png.png"
+  },
+  {
+    "name": "snapfire",
+    "key": "npc_dota_hero_snapfire",
+    "heroId": 128,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_snapfire_png.png"
+  },
+  {
+    "name": "hoodwink",
+    "key": "npc_dota_hero_hoodwink",
+    "heroId": 123,
+    "movementSpeed": 315,
+    "icon": "npc_dota_hero_hoodwink_png.png"
+  },
+  {
+    "name": "dawnbreaker",
+    "key": "npc_dota_hero_dawnbreaker",
+    "heroId": 135,
+    "movementSpeed": 300,
+    "icon": "npc_dota_hero_dawnbreaker_png.png"
+  },
+  {
+    "name": "marci",
+    "key": "npc_dota_hero_marci",
+    "heroId": 136,
+    "movementSpeed": 315,
+    "icon": "npc_dota_hero_marci_png.png"
+  },
+  {
+    "name": "primal_beast",
+    "key": "npc_dota_hero_primal_beast",
+    "heroId": 137,
+    "movementSpeed": 305,
+    "icon": "npc_dota_hero_primal_beast_png.png"
+  },
+  {
+    "name": "muerta",
+    "key": "npc_dota_hero_muerta",
+    "heroId": 138,
+    "movementSpeed": 295,
+    "icon": "npc_dota_hero_muerta_png.png"
+  },
+  {
+    "name": "ringmaster",
+    "key": "npc_dota_hero_ringmaster",
+    "heroId": 131,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_ringmaster_png.png"
+  },
+  {
+    "name": "kez",
+    "key": "npc_dota_hero_kez",
+    "heroId": 145,
+    "movementSpeed": 310,
+    "icon": "npc_dota_hero_kez_png.png"
+  },
+  {
+    "name": "largo",
+    "key": "npc_dota_hero_largo",
+    "heroId": 155,
+    "movementSpeed": 290,
+    "icon": "npc_dota_hero_largo_png.png"
+  }
+]
